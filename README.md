@@ -6,10 +6,10 @@ IntelliMenu allows restaurant businesses to provide dynamic, smart menu solution
 
 ## Core Libraries/Frameworks
 
-Nextjs (Fullstack React/Node framework)
-TypeScript (Typed Javascript)
-ChakraUI (UI Component Library)
-Prisma (Database ORM)
+- Nextjs (Fullstack React/Node framework)
+- TypeScript (Typed Javascript)
+- ChakraUI (UI Component Library)
+- Prisma (Database ORM)
 
 ## Setup for Development
 
