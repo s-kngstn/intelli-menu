@@ -8,9 +8,10 @@ const Home: NextPage = () => {
         Welcome user, here are your restaurants.
       </Heading> */}
       <Heading
-        bgGradient="linear(to-l, #065666, #76E4F7)"
-        bgClip="text"
-        fontSize="6xl"
+        // bgGradient="linear(to-l, #065666, #76E4F7)"
+        // bgClip="text"
+        color="blackAlpha.900"
+        fontSize="5xl"
         fontWeight="extrabold"
       >
         Welcome user, here are your restaurants.

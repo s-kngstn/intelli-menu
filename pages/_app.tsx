@@ -1,7 +1,8 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "reset-css";
 import type { AppProps } from "next/app";
-import PageLayout from "../src/components/pageLayout";
+// import PageLayout from "../src/components/pageLayout";
+import SidebarWithHeader from "../src/components/nav-sidebar/sidebarWithNav";
 
 // React Providers:
 // A provider is a component that provides context for your whole application.
@@ -39,9 +40,9 @@ const theme = extendTheme({
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ChakraProvider theme={theme}>
-      <PageLayout>
+      <SidebarWithHeader>
         <Component {...pageProps} />
-      </PageLayout>
+      </SidebarWithHeader>
     </ChakraProvider>
   );
 };
