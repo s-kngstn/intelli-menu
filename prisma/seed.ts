@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 import { restaurantsData } from "./testData";
 
 const prisma = new PrismaClient();
@@ -35,6 +36,18 @@ const run = async () => {
       });
     })
   );
+
+  const salt = bcrypt.genSaltSync();
+  await prisma.user.upsert({
+    where: { email: "user@example.com" },
+    update: {},
+    create: {
+      first_name: "Sam",
+      last_name: "Kingston",
+      email: "user@example.com",
+      password: bcrypt.hashSync("password123", salt),
+    },
+  });
 };
 
 run()
