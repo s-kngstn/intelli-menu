@@ -16,6 +16,8 @@ model User {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   user_id     String       @default(cuid())
+  first_name  String
+  last_name   String
   email       String       @unique
   password    String
   restaurants Restaurant[]
@@ -48,11 +50,11 @@ model MenuItems {
   name        String  @unique
   course      String
   price       Decimal
-  menuId      Int?
   integral    String
   removable   String
   vegan       Boolean
   vegetarian  Boolean
   pescatarian Boolean
-  Menu        Menu?   @relation(fields: [menuId], references: [id])
+  menuId      Int?
+  menu        Menu?   @relation(fields: [menuId], references: [id])
 }
