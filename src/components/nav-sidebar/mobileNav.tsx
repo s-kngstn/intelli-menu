@@ -26,6 +26,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent={{ base: "space-between", md: "flex-end" }}
+      position="fixed"
+      width="-webkit-fill-available"
       {...rest}
     >
       <IconButton
