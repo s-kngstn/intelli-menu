@@ -1,14 +1,20 @@
-import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const signedinPages = ["/"];
+/**
+ * middleware for checking if user is signed if
+ * once user is verified they are given access to the signedinpages
+ */
 
-export function middleware(req) {
+const signedinPages = ["/dashboard"];
+
+export function middleware(req: {
+  cookies: { INTELLI_ACCESS_TOKEN: any };
+  nextUrl: { pathname: string; clone: () => any };
+}) {
   const cookie = req.cookies.INTELLI_ACCESS_TOKEN;
   if (signedinPages.find((url) => url === req.nextUrl.pathname)) {
     if (!cookie) {
       const url = req.nextUrl.clone();
-      console.log(url);
       url.pathname = "/signin";
       url.search = "";
       return NextResponse.redirect(url);

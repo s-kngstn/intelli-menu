@@ -45,7 +45,7 @@ const AuthForm: FC<Mode> = ({ mode }) => {
       });
     }
     setIsLoading(false);
-    router.push("/");
+    router.push("/dashboard");
   };
 
   if (mode === "signup") {
