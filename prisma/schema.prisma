@@ -15,29 +15,29 @@ model User {
   id          Int          @id @default(autoincrement())
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  user_id     String       @default(cuid())
-  first_name  String
-  last_name   String
+  userId      String       @default(cuid())
+  firstName   String
+  lastName    String
   email       String       @unique
   password    String
   restaurants Restaurant[]
 }
 
 model Restaurant {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  restauraunt_id String   @default(cuid())
-  name           String   @unique
-  address        String
-  userId         Int?
-  menus          Menu[]
-  User           User?    @relation(fields: [userId], references: [id])
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  restaurauntId String   @default(cuid())
+  name          String   @unique
+  address       String
+  userId        Int?
+  menus         Menu[]
+  User          User?    @relation(fields: [userId], references: [id])
 }
 
 model Menu {
   id           Int         @id @default(autoincrement())
-  menu_id      String      @default(cuid())
+  menuId       String      @default(cuid())
   name         String      @unique
   Restaurant   Restaurant? @relation(fields: [restaurantId], references: [id])
   restaurantId Int?
@@ -46,7 +46,7 @@ model Menu {
 
 model MenuItems {
   id          Int     @id @default(autoincrement())
-  item_id     String  @default(cuid())
+  itemId      String  @default(cuid())
   name        String  @unique
   course      String
   price       Decimal

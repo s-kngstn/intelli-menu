@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   return (
-    <Box sx={{ "--my-color": "#0075bf" }}>
+    <Box marginTop="5rem" sx={{ "--my-color": "#0075bf" }}>
       {/* <Heading color="var(--my-color)" size="lg">
         Welcome user, here are your restaurants.
       </Heading> */}

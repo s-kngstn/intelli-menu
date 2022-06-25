@@ -10,8 +10,8 @@ export const authSignIn = (
 export const authSignUp = (
   mode: "signup",
   body: {
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
   }
