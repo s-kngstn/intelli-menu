@@ -18,12 +18,6 @@ import {
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-// import {
-//   HamburgerIcon,
-//   CloseIcon,
-//   ChevronDownIcon,
-//   ChevronRightIcon,
-// } from "@chakra-ui/icons";
 interface NavItem {
   label: string;
   subLabel?: string;
@@ -151,15 +145,6 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {label}
         </Text>
-        {children && (
-          <Icon
-            // as={ChevronDownIcon}
-            transition="all .25s ease-in-out"
-            transform={isOpen ? "rotate(180deg)" : ""}
-            w={6}
-            h={6}
-          />
-        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>

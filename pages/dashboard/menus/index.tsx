@@ -5,18 +5,18 @@ import {
   Tbody,
   Tr,
   Th,
-  Td,
   TableContainer,
   Box,
 } from "@chakra-ui/react";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
+import TableRow from "../../../src/components/table-row/tableRow";
 
 const Menus: NextPage = () => {
   return (
     <SidebarWithHeader>
       <Box marginTop="5rem">
         <TableContainer>
-          <Table variant="striped" colorScheme="facebook">
+          <Table variant="striped" colorScheme="cyan">
             <Thead>
               <Tr>
                 <Th>#</Th>
@@ -25,31 +25,12 @@ const Menus: NextPage = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {/* Table row made into its own data driven component? */}
-              <Tr>
-                <Td>1</Td>
-                <Td>Thursday Lunch</Td>
-                <Td>6 Days Ago</Td>
-                <Td>VIEW BUTTON</Td>
-                <Td>EDIT BUTTON</Td>
-                <Td>DELETE</Td>
-              </Tr>
-              <Tr>
-                <Td>2</Td>
-                <Td>Sunday Roast</Td>
-                <Td>11 Days Ago</Td>
-                <Td>VIEW BUTTON</Td>
-                <Td>EDIT BUTTON</Td>
-                <Td>DELETE</Td>
-              </Tr>
-              <Tr>
-                <Td>3</Td>
-                <Td>Christmas Luncheon</Td>
-                <Td>22 Days Ago</Td>
-                <Td>VIEW BUTTON</Td>
-                <Td>EDIT BUTTON</Td>
-                <Td>DELETE</Td>
-              </Tr>
+              {/* // Data will flow through each table row using Map */}
+              <TableRow />
+              <TableRow />
+              <TableRow />
+              <TableRow />
+              <TableRow />
             </Tbody>
           </Table>
         </TableContainer>
