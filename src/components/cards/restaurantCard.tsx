@@ -5,6 +5,9 @@ import {
   Stack,
   Button,
   useColorModeValue,
+  LinkOverlay,
+  Link,
+  LinkBox,
 } from "@chakra-ui/react";
 
 const RestaurantCard = () => {
@@ -32,19 +35,25 @@ const RestaurantCard = () => {
           </Heading>
           <Text color="gray.500">212 Warran Street</Text>
         </Stack>
-        <Button
-          w="full"
-          mt={8}
-          bg="#065666"
-          color="white"
-          rounded="md"
-          _hover={{
-            boxShadow: "lg",
-            opacity: "0.7",
-          }}
-        >
-          View Menus
-        </Button>
+        <LinkBox>
+          <Link href="/dashboard/menus">
+            <LinkOverlay>
+              <Button
+                w="full"
+                mt={8}
+                bg="#065666"
+                color="white"
+                rounded="md"
+                _hover={{
+                  boxShadow: "lg",
+                  opacity: "0.7",
+                }}
+              >
+                View
+              </Button>
+            </LinkOverlay>
+          </Link>
+        </LinkBox>
         <Button
           w="full"
           mt={4}

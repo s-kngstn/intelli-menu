@@ -7,6 +7,8 @@ import {
   Th,
   TableContainer,
   Box,
+  Flex,
+  Heading,
 } from "@chakra-ui/react";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
 import TableRow from "../../../src/components/table-row/tableRow";
@@ -15,6 +17,17 @@ const Menus: NextPage = () => {
   return (
     <SidebarWithHeader>
       <Box marginTop="5rem">
+        <Flex py={2} justifyContent="space-between" justifyItems="end">
+          <Box>
+            <Heading as="h4" size="md">
+              Nandos
+            </Heading>
+
+            <p>212 Midway Rd</p>
+            <p>London, UK</p>
+          </Box>
+          <p>+ Delete restaurant</p>
+        </Flex>
         <TableContainer>
           <Table variant="striped" colorScheme="cyan">
             <Thead>
