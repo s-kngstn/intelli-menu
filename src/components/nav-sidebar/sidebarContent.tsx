@@ -20,7 +20,7 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: "Home", icon: FiHome, route: "/dashboard" },
   { name: "Add restaurant", icon: FiPlus, route: "/dashboard/add-restaurant" },
-  { name: "Add dish", icon: FiPlus, route: "/dashboard/menus" },
+  // { name: "Add dish", icon: FiPlus, route: "/dashboard/menus" },
   { name: "Settings", icon: FiSettings, route: "/settings" },
   { name: "Sign out", icon: VscSignOut, route: "/" },
 ];

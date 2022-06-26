@@ -18,7 +18,6 @@ const CallToActionWithAnnotation = () => {
             bgGradient="linear(to-l, #76E4F7, #065666)"
             bgClip="text"
             as="span"
-            // color="green.400"
           >
             Abstract
           </Text>
