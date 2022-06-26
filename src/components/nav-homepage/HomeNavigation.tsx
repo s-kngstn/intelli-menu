@@ -15,6 +15,9 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import { AiOutlineClose } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
+
 // import {
 //   HamburgerIcon,
 //   CloseIcon,
@@ -30,44 +33,53 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Inspiration",
+    label: "Dashboard",
     children: [
       {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
+        label: "Explore Your Restaurants",
+        subLabel: "Update, add and create new experiences for your guests",
+        href: "/dashboard",
       },
     ],
-  },
-  {
-    label: "Find Work",
-    children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
-    ],
-  },
-  {
-    label: "Learn Design",
-    href: "#",
-  },
-  {
-    label: "Hire Designers",
-    href: "#",
   },
 ];
+
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  return (
+    <Link
+      href={href}
+      role="group"
+      display="block"
+      p={2}
+      rounded="md"
+      _hover={{ bg: "#defbff" }}
+    >
+      <Stack direction="row" align="center">
+        <Box>
+          <Text
+            transition="all .3s ease"
+            _groupHover={{ color: "#065666" }}
+            fontWeight={500}
+          >
+            {label}
+          </Text>
+          <Text fontSize="sm">{subLabel}</Text>
+        </Box>
+        <Flex
+          transition="all .3s ease"
+          transform="translateX(-10px)"
+          opacity={0}
+          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
+          justify="flex-end"
+          align="center"
+          flex={1}
+        >
+          {/* <Icon color="pink.400" w={5} h={5} as={ChevronRightIcon} /> */}
+        </Flex>
+      </Stack>
+    </Link>
+  );
+};
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
@@ -115,43 +127,6 @@ const DesktopNav = () => {
         </Box>
       ))}
     </Stack>
-  );
-};
-
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
-  return (
-    <Link
-      href={href}
-      role="group"
-      display="block"
-      p={2}
-      rounded="md"
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-    >
-      <Stack direction="row" align="center">
-        <Box>
-          <Text
-            transition="all .3s ease"
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
-          >
-            {label}
-          </Text>
-          <Text fontSize="sm">{subLabel}</Text>
-        </Box>
-        <Flex
-          transition="all .3s ease"
-          transform="translateX(-10px)"
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify="flex-end"
-          align="center"
-          flex={1}
-        >
-          {/* <Icon color="pink.400" w={5} h={5} as={ChevronRightIcon} /> */}
-        </Flex>
-      </Stack>
-    </Link>
   );
 };
 
@@ -244,9 +219,13 @@ const HomeNavigation = () => {
         >
           <IconButton
             onClick={onToggle}
-            // icon={
-            //   isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            // }
+            icon={
+              isOpen ? (
+                <Icon as={AiOutlineClose} w={3} h={3} />
+              ) : (
+                <Icon as={GiHamburgerMenu} w={5} h={5} />
+              )
+            }
             variant="ghost"
             aria-label="Toggle Navigation"
           />
@@ -255,9 +234,12 @@ const HomeNavigation = () => {
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily="heading"
-            color={useColorModeValue("gray.800", "white")}
+            // color={useColorModeValue("gray.800", "white")}
+            bgGradient="linear(to-l, #76E4F7, #065666)"
+            bgClip="text"
+            fontWeight="bold"
           >
-            Logo
+            Intellimenu.
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -279,10 +261,10 @@ const HomeNavigation = () => {
             fontSize="sm"
             fontWeight={600}
             color="white"
-            bg="pink.400"
+            bg="#065666"
             // href="#"
             _hover={{
-              bg: "pink.300",
+              opacity: 0.7,
             }}
           >
             Sign Up
