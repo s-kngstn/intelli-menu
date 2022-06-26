@@ -9,18 +9,20 @@ import {
 import { FiHome, FiPlus, FiSettings } from "react-icons/fi";
 import { VscSignOut } from "react-icons/vsc";
 import { IconType } from "react-icons";
+import Link from "next/link";
 import NavItem from "./navItem";
 
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  route: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", icon: FiHome },
-  { name: "Add restaurant", icon: FiPlus },
-  { name: "Add dish", icon: FiPlus },
-  { name: "Settings", icon: FiSettings },
-  { name: "Sign out", icon: VscSignOut },
+  { name: "Home", icon: FiHome, route: "/dashboard" },
+  { name: "Add restaurant", icon: FiPlus, route: "/dashboard/add-restaurant" },
+  { name: "Add dish", icon: FiPlus, route: "/dashboard/menus" },
+  { name: "Settings", icon: FiSettings, route: "/settings" },
+  { name: "Sign out", icon: VscSignOut, route: "/" },
 ];
 
 interface SidebarProps extends BoxProps {
@@ -52,9 +54,11 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
+        <Link href={link.route} passHref>
+          <NavItem key={link.name} icon={link.icon} route={link.route}>
+            {link.name}
+          </NavItem>
+        </Link>
       ))}
     </Box>
   );

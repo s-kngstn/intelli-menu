@@ -43,7 +43,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         fontWeight="bold"
         fontSize="3xl"
         fontFamily="var(--chakra-fonts-heading)"
-        bgGradient="linear(to-l, #76E4F7, #065666)"
+        bgGradient="linear(to-b, #76E4F7, #065666)"
         bgClip="text"
       >
         Intellimenu.
@@ -60,7 +60,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               <HStack>
                 <Avatar
                   size="sm"
-                  src="https://samkingston.xyz/static/media/me2.684d4a8f.jpg"
+                  bg="#065666"
+                  // src="https://samkingston.xyz/static/media/me2.684d4a8f.jpg"
                 />
                 <VStack
                   display={{ base: "none", md: "flex" }}
@@ -84,7 +85,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
               <MenuDivider />
               <MenuItem>Sign out</MenuItem>
             </MenuList>

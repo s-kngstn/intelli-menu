@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
  * once user is verified they are given access to the signedinpages
  */
 
-const signedinPages = ["/dashboard"];
+const signedinPages = ["/dashboard", "/dashboard/add-restaurant"];
 
 export function middleware(req: {
   cookies: { INTELLI_ACCESS_TOKEN: any };

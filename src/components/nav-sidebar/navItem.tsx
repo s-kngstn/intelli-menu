@@ -4,9 +4,10 @@ import { IconType } from "react-icons";
 
 interface NavItemProps extends FlexProps {
   icon: IconType;
+  route: ReactText;
   children: ReactText;
 }
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+const NavItem = ({ route, icon, children, ...rest }: NavItemProps) => {
   return (
     <Link
       href="/"
