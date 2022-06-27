@@ -9,7 +9,13 @@ import {
 import SidebarContent from "./sidebarContent";
 import MobileNav from "./mobileNav";
 
-const SidebarWithHeader = ({ children }: { children: ReactNode }) => {
+const SidebarWithHeader = ({
+  children,
+  user,
+}: {
+  children: ReactNode;
+  user: any;
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
@@ -31,7 +37,7 @@ const SidebarWithHeader = ({ children }: { children: ReactNode }) => {
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav onOpen={onOpen} />
+      <MobileNav user={user} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4" overflowY="scroll">
         {children}
       </Box>
