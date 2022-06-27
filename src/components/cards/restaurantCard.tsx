@@ -10,7 +10,7 @@ import {
   LinkBox,
 } from "@chakra-ui/react";
 
-const RestaurantCard = () => {
+const RestaurantCard = ({ restaurant }) => {
   return (
     <Box
       maxW="270px"
@@ -31,12 +31,12 @@ const RestaurantCard = () => {
       <Box p={6}>
         <Stack spacing={0} align="center" mb={5}>
           <Heading fontSize="2xl" fontWeight={500} fontFamily="body">
-            Nandos
+            {restaurant.name}
           </Heading>
-          <Text color="gray.500">212 Warran Street</Text>
+          <Text color="gray.500">{restaurant.address}</Text>
         </Stack>
         <LinkBox>
-          <Link href="/dashboard/menus">
+          <Link href={`/dashboard/menus/${restaurant.id}`}>
             <LinkOverlay>
               <Button
                 w="full"

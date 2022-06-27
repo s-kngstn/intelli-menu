@@ -10,6 +10,7 @@ export const validateRoute = (handler) => {
   // * Handler is a function that takes a request and a response.
   return async (req: NextApiRequest, res: NextApiResponse) => {
     const token = req.cookies.INTELLI_ACCESS_TOKEN;
+    console.log(token)
     // This function checks the cookie that is always sent up.
     // We are mandating that the cookie is sent up to use the API route, if there is no cookie then there is no access.
     if (token) {
@@ -32,7 +33,7 @@ export const validateRoute = (handler) => {
         res.json({ error: "Not Authorized" });
         return;
       }
-      // If the token id matches the user, we return by calling the original handler function (E.G  our api serverless function me.ts)
+      // If the token id matches the user, we return by calling the original handler function (E.G  our api serverless function user.ts)
       return handler(req, res, user);
     }
     // If there is no token, we throw a 401 with an error message of Not Authorized.
@@ -40,5 +41,3 @@ export const validateRoute = (handler) => {
     res.json({ error: "Not Authorized" });
   };
 };
-
-
