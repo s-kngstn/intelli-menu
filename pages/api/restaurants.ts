@@ -8,5 +8,19 @@ export default validateRoute(async (req, res, user) => {
     },
   });
 
+  // Below works and gets menus, but get it once on the page
+  // const menus = await prisma.menu.findMany({
+  //   where: {
+  //     restaurantId: user.id,
+  //   },
+  // });
+
+  // Below works and gets menus, but get it once on the page
+  // const menus = await prisma.menuItems.findMany({
+  //   where: {
+  //     menuId: user.id,
+  //   },
+  // });
+
   res.json(restaurants);
 });
