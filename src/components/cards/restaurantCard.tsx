@@ -57,12 +57,12 @@ const RestaurantCard = ({ restaurant }) => {
         <Button
           w="full"
           mt={4}
-          bg="red.500"
+          bg="red.700"
           color="white"
           rounded="md"
           _hover={{
             boxShadow: "lg",
-            opacity: "0.7",
+            bg: "red.500",
           }}
         >
           Delete
