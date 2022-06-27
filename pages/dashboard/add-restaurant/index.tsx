@@ -7,11 +7,13 @@ import {
   InputGroup,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
+import { useUser } from "../../../lib/hooks";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
 
 const AddRestaurant: NextPage = () => {
+  const { user } = useUser();
   return (
-    <SidebarWithHeader>
+    <SidebarWithHeader user={user}>
       <Flex minH="95vh" align="center" justify="center" bg="gray.100">
         <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6}>
           <Stack align="center">

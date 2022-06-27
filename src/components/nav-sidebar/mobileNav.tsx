@@ -14,8 +14,9 @@ import { FiChevronDown, FiMenu } from "react-icons/fi";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
+  user: any;
 }
-const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+const MobileNav = ({ user, onOpen, ...rest }: MobileProps) => {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -69,7 +70,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Sam Kingston</Text>
+                  <Text fontSize="sm">{`${user?.firstName} ${user?.lastName}`}</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>

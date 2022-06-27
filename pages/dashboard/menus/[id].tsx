@@ -12,10 +12,12 @@ import {
 } from "@chakra-ui/react";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
 import TableRow from "../../../src/components/table-row/tableRow";
+import { useUser } from "../../../lib/hooks";
 
 const Menus: NextPage = () => {
+  const { user } = useUser();
   return (
-    <SidebarWithHeader>
+    <SidebarWithHeader user={user}>
       <Box marginTop="5rem">
         <Flex py={2} justifyContent="space-between" justifyItems="end">
           <Box>

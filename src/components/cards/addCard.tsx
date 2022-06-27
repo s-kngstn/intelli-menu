@@ -19,7 +19,7 @@ const AddRestaurant = () => {
       rounded="md"
       overflow="hidden"
       marginTop="2rem"
-      marginRight="2rem"
+      marginRight="1rem"
       border="2px"
       borderColor="blackAlpha.700"
     >
