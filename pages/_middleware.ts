@@ -11,6 +11,10 @@ const signedinPages = [
   "/dashboard/menus",
 ];
 
+// change logic so pages in array are ONLY ones allowed without a cookie 😎
+
+// this will only go so far.. consider making a function that saves each new nextURL.pathname to the signed in pages and saves that information to the database
+
 export function middleware(req: {
   cookies: { INTELLI_ACCESS_TOKEN: any };
   nextUrl: { pathname: string; clone: () => any };

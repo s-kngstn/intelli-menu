@@ -5,6 +5,8 @@ import {
   useColorModeValue,
   Text,
   BoxProps,
+  LinkBox,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import { FiHome, FiPlus, FiSettings } from "react-icons/fi";
 import { VscSignOut } from "react-icons/vsc";
@@ -42,15 +44,21 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text
-          fontSize="3xl"
-          fontFamily="var(--chakra-fonts-heading)"
-          fontWeight="bold"
-          bgGradient="linear(to-l, #76E4F7, #065666)"
-          bgClip="text"
-        >
-          Intellimenu.
-        </Text>
+        <LinkBox>
+          <Link href="/" passHref>
+            <LinkOverlay>
+              <Text
+                fontSize="3xl"
+                fontFamily="var(--chakra-fonts-heading)"
+                fontWeight="bold"
+                bgGradient="linear(to-l, #76E4F7, #065666)"
+                bgClip="text"
+              >
+                Intellimenu.
+              </Text>
+            </LinkOverlay>
+          </Link>
+        </LinkBox>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
