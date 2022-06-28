@@ -14,6 +14,8 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  LinkBox,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -238,22 +240,34 @@ const HomeNavigation = () => {
           direction="row"
           spacing={6}
         >
-          <Button as="a" fontSize="sm" fontWeight={400} variant="link" href="#">
+          <Button
+            as="a"
+            fontSize="sm"
+            fontWeight={400}
+            variant="link"
+            href="/signin"
+          >
             Sign In
           </Button>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize="sm"
-            fontWeight={600}
-            color="white"
-            bg="#065666"
-            // href="#"
-            _hover={{
-              opacity: 0.7,
-            }}
-          >
-            Sign Up
-          </Button>
+          <LinkBox>
+            <Link href="/signup">
+              <LinkOverlay>
+                <Button
+                  display={{ base: "none", md: "inline-flex" }}
+                  fontSize="sm"
+                  fontWeight={600}
+                  color="white"
+                  bg="#065666"
+                  // href="#"
+                  _hover={{
+                    opacity: 0.7,
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </LinkOverlay>
+            </Link>
+          </LinkBox>
         </Stack>
       </Flex>
 

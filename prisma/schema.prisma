@@ -49,7 +49,7 @@ model MenuItems {
   itemId      String  @default(cuid())
   name        String  @unique
   course      String
-  price       Decimal
+  price       String
   integral    String
   removable   String
   vegan       Boolean
