@@ -19,7 +19,7 @@ import { useUser } from "../../../lib/hooks";
 const Menus: NextPage = ({ menus, restaurant }) => {
   const { user } = useUser();
   const restaurantDetails = restaurant[0];
-  
+
   return (
     <SidebarWithHeader user={user}>
       <Box marginTop="5rem">
@@ -32,7 +32,7 @@ const Menus: NextPage = ({ menus, restaurant }) => {
             {/* <p>212 Midway Rd</p> */}
             <p>{restaurantDetails.address}</p>
           </Box>
-          <p>+ Delete restaurant</p>
+          <p>+ Add restaurant</p>
         </Flex>
         <TableContainer>
           <Table variant="striped" colorScheme="cyan">
@@ -46,7 +46,9 @@ const Menus: NextPage = ({ menus, restaurant }) => {
             <Tbody>
               {menus.map(
                 (menu: { menuId: Key | null | undefined }, i: number) => {
-                  return <TableRow key={menu.menuId} id={i + 1} menu={menu} />;
+                  return (
+                    <TableRow key={menu.menuId} tableId={i + 1} data={menu} />
+                  );
                 }
               )}
             </Tbody>

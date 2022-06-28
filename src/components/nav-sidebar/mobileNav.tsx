@@ -1,4 +1,14 @@
-import { Box, Flex, FlexProps, HStack, VStack } from "@chakra-ui/layout";
+import {
+  Box,
+  Flex,
+  FlexProps,
+  Heading,
+  HStack,
+  Link,
+  LinkBox,
+  LinkOverlay,
+  VStack,
+} from "@chakra-ui/layout";
 import {
   Menu,
   MenuDivider,
@@ -38,17 +48,22 @@ const MobileNav = ({ user, onOpen, ...rest }: MobileProps) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-
-      <Text
-        display={{ base: "flex", md: "none" }}
-        fontWeight="bold"
-        fontSize="3xl"
-        fontFamily="var(--chakra-fonts-heading)"
-        bgGradient="linear(to-b, #76E4F7, #065666)"
-        bgClip="text"
-      >
-        Intellimenu.
-      </Text>
+      <LinkBox>
+        <Link href="/">
+          <LinkOverlay>
+            <Text
+              display={{ base: "flex", md: "none" }}
+              fontWeight="bold"
+              fontSize="3xl"
+              fontFamily="var(--chakra-fonts-heading)"
+              bgGradient="linear(to-b, #76E4F7, #065666)"
+              bgClip="text"
+            >
+              Intellimenu.
+            </Text>
+          </LinkOverlay>
+        </Link>
+      </LinkBox>
 
       <HStack spacing={{ base: "0", md: "6" }}>
         <Flex alignItems="center">
