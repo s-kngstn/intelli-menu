@@ -10,25 +10,27 @@ import {
   Flex,
   Heading,
 } from "@chakra-ui/react";
+import { Key } from "react";
 import prisma from "../../../lib/prisma";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
 import TableRow from "../../../src/components/table-row/tableRow";
 import { useUser } from "../../../lib/hooks";
 
-const Menus: NextPage = ({ menus }) => {
+const Menus: NextPage = ({ menus, restaurant }) => {
   const { user } = useUser();
-  console.log(menus);
+  const restaurantDetails = restaurant[0];
+  
   return (
     <SidebarWithHeader user={user}>
       <Box marginTop="5rem">
         <Flex py={2} justifyContent="space-between" justifyItems="end">
           <Box>
             <Heading as="h4" size="md">
-              Nandos
+              {restaurantDetails.name}
             </Heading>
-
-            <p>212 Midway Rd</p>
-            <p>London, UK</p>
+            {/* add street name to address db */}
+            {/* <p>212 Midway Rd</p> */}
+            <p>{restaurantDetails.address}</p>
           </Box>
           <p>+ Delete restaurant</p>
         </Flex>
@@ -42,12 +44,11 @@ const Menus: NextPage = ({ menus }) => {
               </Tr>
             </Thead>
             <Tbody>
-              {/* // Data will flow through each table row using Map */}
-              <TableRow />
-              <TableRow />
-              <TableRow />
-              <TableRow />
-              <TableRow />
+              {menus.map(
+                (menu: { menuId: Key | null | undefined }, i: number) => {
+                  return <TableRow key={menu.menuId} id={i + 1} menu={menu} />;
+                }
+              )}
             </Tbody>
           </Table>
         </TableContainer>
@@ -56,18 +57,20 @@ const Menus: NextPage = ({ menus }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
-  console.log(context);
+export const getServerSideProps = async (context: { query: { id: any } }) => {
   const { id } = context.query;
-  console.log(id);
   const menus = await prisma.menu.findMany({
     where: {
       restaurantId: Number(id),
     },
   });
-  console.log(menus);
+  const restaurant = await prisma.restaurant.findMany({
+    where: {
+      id: Number(id),
+    },
+  });
   return {
-    props: { menus },
+    props: { menus, restaurant },
   };
 };
 
