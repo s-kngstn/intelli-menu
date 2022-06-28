@@ -10,12 +10,14 @@ import {
   Flex,
   Heading,
 } from "@chakra-ui/react";
+import prisma from "../../../lib/prisma";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
 import TableRow from "../../../src/components/table-row/tableRow";
 import { useUser } from "../../../lib/hooks";
 
-const Menus: NextPage = () => {
+const Menus: NextPage = ({ menus }) => {
   const { user } = useUser();
+  console.log(menus);
   return (
     <SidebarWithHeader user={user}>
       <Box marginTop="5rem">
@@ -52,6 +54,21 @@ const Menus: NextPage = () => {
       </Box>
     </SidebarWithHeader>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  console.log(context);
+  const { id } = context.query;
+  console.log(id);
+  const menus = await prisma.menu.findMany({
+    where: {
+      restaurantId: Number(id),
+    },
+  });
+  console.log(menus);
+  return {
+    props: { menus },
+  };
 };
 
 export default Menus;

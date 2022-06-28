@@ -9,7 +9,7 @@ export const restaurantsData = [
           {
             name: "Pie & Mash",
             course: "Mains",
-            price: 22.0,
+            price: "22.0",
             integral: "['gluten']",
             removable: "[]",
             vegan: false,
@@ -19,7 +19,7 @@ export const restaurantsData = [
           {
             name: "Sticky Toffee Pudding",
             course: "Dessert",
-            price: 12.11,
+            price: "12.11",
             integral: "['gluten', 'eggs']",
             removable: "['sesame_seeds']",
             vegan: false,
@@ -34,7 +34,7 @@ export const restaurantsData = [
           {
             name: "Roast Turkey",
             course: "Mains",
-            price: 18.99,
+            price: "18.99",
             integral: "['gluten', 'eggs']",
             removable: "['sesame_seeds']",
             vegan: false,
@@ -55,7 +55,7 @@ export const restaurantsData = [
           {
             name: "Cheeseburger",
             course: "Mains",
-            price: 0.99,
+            price: "0.99",
             integral: "['eggs', 'dairy']",
             removable: "['sesame_seeds', 'gluten']",
             vegan: false,
@@ -65,7 +65,7 @@ export const restaurantsData = [
           {
             name: "Four Piece Nuggets",
             course: "Starter",
-            price: 0.99,
+            price: "0.99",
             integral: "['gluten']",
             removable: "['sesame_seeds', 'peanuts']",
             vegan: false,
@@ -80,7 +80,7 @@ export const restaurantsData = [
           {
             name: "Big Mac",
             course: "Mains",
-            price: 3.99,
+            price: "3.99",
             integral: "['gluten', 'eggs']",
             removable: "['sesame_seeds', 'celery']",
             vegan: false,
@@ -90,7 +90,7 @@ export const restaurantsData = [
           {
             name: "Mc Flurry",
             course: "Dessert",
-            price: 1.5,
+            price: "1.5",
             integral: "['gluten', 'eggs']",
             removable: "['sesame_seeds', 'celery']",
             vegan: false,

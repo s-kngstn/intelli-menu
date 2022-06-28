@@ -9,9 +9,6 @@ const Dashboard = () => {
   const { user } = useUser();
   const { restaurants, isLoading } = useRestaurants();
 
-  console.log(restaurants);
-
-  // console.log(user);
   return (
     <SidebarWithHeader user={user}>
       {isLoading ? (
