@@ -6,7 +6,6 @@ import prisma from "../../lib/prisma";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const salt = bcrypt.genSaltSync();
-  // eslint-disable-next-line camelcase
   const { firstName, lastName, email, password } = req.body;
 
   let user;
@@ -14,9 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     user = await prisma.user.create({
       data: {
-        // eslint-disable-next-line camelcase
         firstName,
-        // eslint-disable-next-line camelcase
         lastName,
         email,
         password: bcrypt.hashSync(password, salt),

@@ -6,7 +6,6 @@ import { timeSince } from "../../../lib/timeSince";
 
 const TableRow = ({ data, tableId }) => {
   const { name, createdAt, id } = data;
-  console.log(id);
   return (
     <Tr>
       <Td>{tableId}</Td>

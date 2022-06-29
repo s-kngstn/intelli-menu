@@ -9,7 +9,7 @@ import TableRow from "../../../../src/components/table-row/tableRow";
 
 const Menu: NextPage = ({ menuItems }) => {
   const { user } = useUser();
-  console.log(menuItems);
+  const menuDetails = menuItems[0].menu;
   // below needs to be a function that turns a string from the db into an array
   // const integral = menuItems[0].integral;
   // console.log(integral);
@@ -23,7 +23,7 @@ const Menu: NextPage = ({ menuItems }) => {
         <Flex py={2} justifyContent="space-between" justifyItems="end">
           <Box>
             <Heading as="h4" size="md">
-              Menu name
+              {menuDetails.name}
             </Heading>
           </Box>
           <p>+ Add dish</p>
@@ -59,13 +59,15 @@ const Menu: NextPage = ({ menuItems }) => {
 
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
-  console.log(id);
   const menuItems = await prisma.menuItems.findMany({
     where: {
       menuId: Number(id),
     },
+    include: {
+      menu: true,
+    },
   });
-  console.log(menuItems);
+
   return {
     props: { menuItems },
   };
