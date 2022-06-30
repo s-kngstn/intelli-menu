@@ -32,7 +32,7 @@ const Menus: NextPage = ({ menus, restaurant }) => {
             {/* <p>212 Midway Rd</p> */}
             <p>{restaurantDetails.address}</p>
           </Box>
-          <p>+ Add restaurant</p>
+          <p>+ Add menu</p>
         </Flex>
         <TableContainer>
           <Table variant="striped" colorScheme="cyan">
@@ -41,6 +41,7 @@ const Menus: NextPage = ({ menus, restaurant }) => {
                 <Th>#</Th>
                 <Th>Name</Th>
                 <Th>Added</Th>
+                <Th>QR</Th>
               </Tr>
             </Thead>
             <Tbody>
