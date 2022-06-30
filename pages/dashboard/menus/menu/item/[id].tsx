@@ -17,6 +17,7 @@ import prisma from "../../../../../lib/prisma";
 import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebarWithNav";
 
 const MenuItem: NextPage = ({ menuItem, host }) => {
+  console.log(host)
   const item = menuItem[0];
   const { user } = useUser();
   const router = useRouter();
@@ -63,7 +64,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     diet: string;
   }) => {
     const { data } = await axios.patch(
-      `${host}/api/menu-item/${item.id}`,
+      `http://${host}/api/menu-item/${item.id}`,
       newData
     );
 
