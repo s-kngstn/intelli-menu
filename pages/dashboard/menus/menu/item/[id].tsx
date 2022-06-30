@@ -12,7 +12,6 @@ import {
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
-// import useSWR from "swr";
 import { patchFetcher } from "../../../../../lib/fetcher";
 import { useUser } from "../../../../../lib/hooks";
 import prisma from "../../../../../lib/prisma";
@@ -93,7 +92,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     fish: string;
     diet: string;
   }) => {
-    return patchFetcher(`/menu-item/${item.id}`, body);
+    return patchFetcher(`${item.id}`, body);
   };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
