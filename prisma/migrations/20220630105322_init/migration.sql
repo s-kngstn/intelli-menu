@@ -61,9 +61,7 @@ CREATE TABLE "MenuItems" (
     "mustard" TEXT NOT NULL,
     "celery" TEXT NOT NULL,
     "fish" TEXT NOT NULL,
-    "vegan" BOOLEAN NOT NULL,
-    "vegetarian" BOOLEAN NOT NULL,
-    "pescatarian" BOOLEAN NOT NULL,
+    "diet" TEXT NOT NULL,
     "menuId" INTEGER,
 
     CONSTRAINT "MenuItems_pkey" PRIMARY KEY ("id")
