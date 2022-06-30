@@ -37,9 +37,7 @@ const run = async () => {
                     mustard: item.mustard,
                     celery: item.celery,
                     fish: item.fish,
-                    vegan: item.vegan,
-                    vegetarian: item.vegetarian,
-                    pescatarian: item.pescatarian,
+                    diet: item.diet,
                   };
                 }),
               },

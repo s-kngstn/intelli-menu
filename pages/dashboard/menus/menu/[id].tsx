@@ -57,7 +57,7 @@ const Menu: NextPage = ({ menuItems }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async (context: { query: { id: any } }) => {
   const { id } = context.query;
   const menuItems = await prisma.menuItems.findMany({
     where: {

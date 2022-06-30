@@ -14,34 +14,32 @@ import { useUser } from "../../../../../lib/hooks";
 import prisma from "../../../../../lib/prisma";
 import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebarWithNav";
 
-const MenuItem: NextPage = ({menuItem}) => {
-  console.log(menuItem);
+const MenuItem: NextPage = ({ menuItem }) => {
+  const item = menuItem[0];
   const { user } = useUser();
-  const [name, setName] = useState(menuItem[0].name);
-  const [course, setCourse] = useState(menuItem[0].course);
-  const [description, setDescription] = useState("");
-  const [gluten, setGluten] = useState("notIncluded");
-  const [dairy, setDairy] = useState("notIncluded");
-  const [nuts, setNuts] = useState("notIncluded");
-  const [peanuts, setPeanuts] = useState("notIncluded");
-  const [sesame, setSesame] = useState("notIncluded");
-  const [soya, setSoya] = useState("notIncluded");
-  const [sulphites, setSulphites] = useState("notIncluded");
-  const [eggs, setEggs] = useState("notIncluded");
-  const [lupin, setLupin] = useState("notIncluded");
-  const [crustacean, setCrustacean] = useState("notIncluded");
-  const [molluscs, setMolluscs] = useState("notIncluded");
-  const [mustard, setMustard] = useState("notIncluded");
-  const [celery, setCelery] = useState("notIncluded");
-  const [fish, setFish] = useState("notIncluded");
-  const [diet, setDiet] = useState("");
+  const [name, setName] = useState(item.name);
+  const [course, setCourse] = useState(item.course);
+  const [description, setDescription] = useState(item.description);
+  const [gluten, setGluten] = useState(item.gluten);
+  const [dairy, setDairy] = useState(item.dairy);
+  const [nuts, setNuts] = useState(item.nuts);
+  const [peanuts, setPeanuts] = useState(item.peanuts);
+  const [sesame, setSesame] = useState(item.sesame);
+  const [soya, setSoya] = useState(item.soya);
+  const [sulphites, setSulphites] = useState(item.sulphites);
+  const [eggs, setEggs] = useState(item.eggs);
+  const [lupin, setLupin] = useState(item.lupin);
+  const [crustacean, setCrustacean] = useState(item.crustacean);
+  const [molluscs, setMolluscs] = useState(item.molluscs);
+  const [mustard, setMustard] = useState(item.mustard);
+  const [celery, setCelery] = useState(item.celery);
+  const [fish, setFish] = useState(item.fish);
+  const [diet, setDiet] = useState(item.diet);
 
   const handleDiet = (e: { target: { value: SetStateAction<string> } }) => {
     setDiet(e.target.value);
   };
 
-  console.log(diet);
-  console.log(course)
   return (
     <SidebarWithHeader user={user}>
       <Box marginTop="4rem">
@@ -92,6 +90,7 @@ const MenuItem: NextPage = ({menuItem}) => {
                     </FormLabel>
                     <Input
                       type="text"
+                      value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
                   </FormControl>
@@ -105,7 +104,7 @@ const MenuItem: NextPage = ({menuItem}) => {
                       id="diet"
                       placeholder="Select diet"
                     >
-                      <option value="">No</option>
+                      <option value="noDiet">No</option>
                       <option value="vegan">Vegan</option>
                       <option value="vegetarian">Vegetarian</option>
                       <option value="pescatarian">Pescatarian</option>
@@ -346,7 +345,7 @@ const MenuItem: NextPage = ({menuItem}) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async (context: { query: { id: any } }) => {
   const { id } = context.query;
   const menuItem = await prisma.menuItems.findMany({
     where: {
