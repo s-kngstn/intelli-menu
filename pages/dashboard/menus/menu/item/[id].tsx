@@ -8,16 +8,18 @@ import {
   RadioGroup,
   Select,
 } from "@chakra-ui/react";
-import axios from "axios";
+// import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
+// import useSWR from "swr";
+import { patchFetcher } from "../../../../../lib/fetcher";
 import { useUser } from "../../../../../lib/hooks";
 import prisma from "../../../../../lib/prisma";
 import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebarWithNav";
 
 const MenuItem: NextPage = ({ menuItem, host }) => {
-  console.log(host)
+  console.log(host);
   const item = menuItem[0];
   const { user } = useUser();
   const router = useRouter();
@@ -43,7 +45,35 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
   const handleDiet = (e: { target: { value: SetStateAction<string> } }) => {
     setDiet(e.target.value);
   };
-  const updateData = async (newData: {
+  // const updateData = async (newData: {
+  //   name: string;
+  //   course: string;
+  //   description: string;
+  //   gluten: string;
+  //   dairy: string;
+  //   nuts: string;
+  //   peanuts: string;
+  //   sesame: string;
+  //   soya: string;
+  //   sulphites: string;
+  //   eggs: string;
+  //   lupin: string;
+  //   crustacean: string;
+  //   molluscs: string;
+  //   mustard: string;
+  //   celery: string;
+  //   fish: string;
+  //   diet: string;
+  // }) => {
+  //   const { data } = await axios.patch(
+  //     `http://${host}/api/menu-item/${item.id}`,
+  //     newData
+  //   );
+
+  //   return data;
+  // };
+
+  const patchItem = (body: {
     name: string;
     course: string;
     description: string;
@@ -63,12 +93,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     fish: string;
     diet: string;
   }) => {
-    const { data } = await axios.patch(
-      `http://${host}/api/menu-item/${item.id}`,
-      newData
-    );
-
-    return data;
+    return patchFetcher(`/menu-item/${item.id}`, body);
   };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
@@ -93,7 +118,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
       fish,
       diet,
     };
-    updateData(updatedMenu);
+    patchItem(updatedMenu);
     router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
@@ -410,9 +435,9 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
   const { host } = context.req.headers;
-  console.log(context.req.headers)
+  console.log(context.req.headers);
 
-  console.log(host)
+  console.log(host);
 
   const menuItem = await prisma.menuItems.findMany({
     where: {
