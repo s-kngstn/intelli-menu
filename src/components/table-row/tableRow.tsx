@@ -13,6 +13,13 @@ const TableRow = ({ data, tableId }) => {
       <Td>{timeSince(new Date(createdAt))}</Td>
       <Td>
         <LinkBox>
+          <Link href={`/qr/${id}`}>
+            <LinkOverlay>Grab QR Code</LinkOverlay>
+          </Link>
+        </LinkBox>
+      </Td>
+      <Td>
+        <LinkBox>
           <Link href={`/dashboard/menus/menu/${id}`}>
             <LinkOverlay>
               <Icon as={FaRegFolderOpen} w={6} h={6} color="#065666" />
