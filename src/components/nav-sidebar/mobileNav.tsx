@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   FlexProps,
-  Heading,
   HStack,
   Link,
   LinkBox,
@@ -38,6 +37,7 @@ const MobileNav = ({ user, onOpen, ...rest }: MobileProps) => {
       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent={{ base: "space-between", md: "flex-end" }}
       position="fixed"
+      sx={{ zIndex: 999999 }}
       width="-webkit-fill-available"
       {...rest}
     >
