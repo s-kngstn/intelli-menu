@@ -119,9 +119,8 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
       diet,
     };
     updateData(updatedMenu);
-    setTimeout(() => {
-      router.push(`/dashboard/menus/menu/${item.menu.id}`);
-    }, 3000);
+
+    router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
   const handleCancel = () => {
