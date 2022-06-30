@@ -16,7 +16,7 @@ export default function fetcher(url: string, data: any) {
 
 export function patchFetcher(url: string, data: any) {
   return fetch(`${window.location.origin}/api/${url}`, {
-    method: "PATCH",
+    method: "PUT",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
