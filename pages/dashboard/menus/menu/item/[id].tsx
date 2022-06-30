@@ -63,7 +63,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     diet: string;
   }) => {
     const { data } = await axios.patch(
-      `https://${host}/api/menu-item/${item.id}`,
+      `https://intelli-menu-3l2536piq-s-kngstn.vercel.app/api/menu-item/${item.id}`,
       newData
     );
 
