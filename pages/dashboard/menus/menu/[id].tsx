@@ -5,7 +5,7 @@ import { Key } from "react";
 import { useUser } from "../../../../lib/hooks";
 import prisma from "../../../../lib/prisma";
 import SidebarWithHeader from "../../../../src/components/nav-sidebar/sidebarWithNav";
-import TableRow from "../../../../src/components/table-row/tableRow";
+import MenuItemRow from "../../../../src/components/table-row/menuItemRow";
 
 const Menu: NextPage = ({ menuItems }) => {
   const { user } = useUser();
@@ -41,7 +41,7 @@ const Menu: NextPage = ({ menuItems }) => {
               {menuItems.map(
                 (menuItem: { itemId: Key | null | undefined }, i: number) => {
                   return (
-                    <TableRow
+                    <MenuItemRow
                       key={menuItem.itemId}
                       tableId={i + 1}
                       data={menuItem}

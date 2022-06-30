@@ -46,6 +46,7 @@ model Menu {
   menuItems    MenuItems[]
 }
 
+// food strings will be either "notIncluded", "integral", "removable"
 model MenuItems {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
@@ -54,8 +55,21 @@ model MenuItems {
   name        String   @unique
   course      String
   price       String
-  integral    String
-  removable   String
+  description String?
+  gluten      String
+  dairy       String
+  nuts        String
+  peanuts     String
+  sesame      String
+  soya        String
+  sulphites   String
+  eggs        String
+  lupin       String
+  crustacean  String
+  molluscs    String
+  mustard     String
+  celery      String
+  fish        String
   vegan       Boolean
   vegetarian  Boolean
   pescatarian Boolean

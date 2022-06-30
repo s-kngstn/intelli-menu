@@ -14,20 +14,21 @@ export type JSONValue = JSONArray | JSONObject | JSONPrimitive;
 export type JSONObject = { [key: string]: JSONValue };
 export type JSONArray = JSONValue[];
 
-// | "Milk"
-// | "Gluten"
-// | "Nuts"
-// | "Peanuts"
-// | "Sesame Seeds"
-// | "Soya"
-// | "Sulphur Dioxide"
-// | "Eggs"
-// | "Lupin"
-// | "Crustacean"
-// | "Molluscs"
-// | "Mustard"
-// | "Celery"
-// | "Fish"
+// | "Milk" *
+// | "Gluten" *
+// | "Nuts" *
+// | "Peanuts" *
+// | "Sesame Seeds" *
+// | "Soya" *
+// | "Sulphur Dioxide" *
+// | "Eggs" *
+// | "Lupin" *
+// | "Crustacean" *
+// | "Molluscs" *
+// | "Mustard" *
+// | "Celery" *
+// | "Fish" *
+
 // | "Veg"
 // | "Vegan"
 // | "Pescatarian";
