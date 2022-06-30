@@ -92,7 +92,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     fish: string;
     diet: string;
   }) => {
-    return patchFetcher(`${item.id}`, body);
+    return patchFetcher(`menu-item/${item.id}`, body);
   };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
