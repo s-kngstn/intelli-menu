@@ -63,7 +63,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     diet: string;
   }) => {
     const { data } = await axios.patch(
-      `http://${host}/api/menu-item/${item.id}`,
+      `https://${host}/api/menu-item/${item.id}`,
       newData
     );
 
@@ -409,6 +409,9 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
   const { host } = context.req.headers;
+  console.log(context.req.headers)
+
+  console.log(host)
 
   const menuItem = await prisma.menuItems.findMany({
     where: {
