@@ -3,6 +3,9 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
 
@@ -14,6 +17,7 @@ CREATE TABLE "Restaurant" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "restaurauntId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "userId" INTEGER,
@@ -24,6 +28,9 @@ CREATE TABLE "Restaurant" (
 -- CreateTable
 CREATE TABLE "Menu" (
     "id" SERIAL NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "menuId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "restaurantId" INTEGER,
 
@@ -33,15 +40,29 @@ CREATE TABLE "Menu" (
 -- CreateTable
 CREATE TABLE "MenuItems" (
     "id" SERIAL NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "itemId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "course" TEXT NOT NULL,
-    "price" DECIMAL(65,30) NOT NULL,
+    "price" TEXT NOT NULL,
+    "description" TEXT,
+    "gluten" TEXT NOT NULL,
+    "dairy" TEXT NOT NULL,
+    "nuts" TEXT NOT NULL,
+    "peanuts" TEXT NOT NULL,
+    "sesame" TEXT NOT NULL,
+    "soya" TEXT NOT NULL,
+    "sulphites" TEXT NOT NULL,
+    "eggs" TEXT NOT NULL,
+    "lupin" TEXT NOT NULL,
+    "crustacean" TEXT NOT NULL,
+    "molluscs" TEXT NOT NULL,
+    "mustard" TEXT NOT NULL,
+    "celery" TEXT NOT NULL,
+    "fish" TEXT NOT NULL,
+    "diet" TEXT NOT NULL,
     "menuId" INTEGER,
-    "integral" TEXT NOT NULL,
-    "removable" TEXT NOT NULL,
-    "vegan" BOOLEAN NOT NULL,
-    "vegetarian" BOOLEAN NOT NULL,
-    "pescatarian" BOOLEAN NOT NULL,
 
     CONSTRAINT "MenuItems_pkey" PRIMARY KEY ("id")
 );

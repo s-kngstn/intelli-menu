@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 import { restaurantsData } from "./testData";
 
 const prisma = new PrismaClient();
@@ -21,11 +22,22 @@ const run = async () => {
                     name: item.name,
                     course: item.course,
                     price: item.price,
-                    integral: item.integral,
-                    removable: item.removable,
-                    vegan: item.vegan,
-                    vegetarian: item.vegetarian,
-                    pescatarian: item.pescatarian,
+                    description: item.description,
+                    gluten: item.gluten,
+                    dairy: item.dairy,
+                    nuts: item.nuts,
+                    peanuts: item.peanuts,
+                    sesame: item.sesame,
+                    soya: item.soya,
+                    sulphites: item.sulphites,
+                    eggs: item.eggs,
+                    lupin: item.lupin,
+                    crustacean: item.crustacean,
+                    molluscs: item.molluscs,
+                    mustard: item.mustard,
+                    celery: item.celery,
+                    fish: item.fish,
+                    diet: item.diet,
                   };
                 }),
               },
@@ -35,6 +47,18 @@ const run = async () => {
       });
     })
   );
+
+  const salt = bcrypt.genSaltSync();
+  await prisma.user.upsert({
+    where: { email: "user@example.com" },
+    update: {},
+    create: {
+      firstName: "Sam",
+      lastName: "Kingston",
+      email: "user@example.com",
+      password: bcrypt.hashSync("password123", salt),
+    },
+  });
 };
 
 run()

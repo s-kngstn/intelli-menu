@@ -15,44 +15,62 @@ model User {
   id          Int          @id @default(autoincrement())
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  user_id     String       @default(cuid())
+  userId      String       @default(cuid())
+  firstName   String
+  lastName    String
   email       String       @unique
   password    String
   restaurants Restaurant[]
 }
 
 model Restaurant {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  restauraunt_id String   @default(cuid())
-  name           String   @unique
-  address        String
-  userId         Int?
-  menus          Menu[]
-  User           User?    @relation(fields: [userId], references: [id])
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  restaurauntId String   @default(cuid())
+  name          String   @unique
+  address       String
+  userId        Int?
+  menus         Menu[]
+  User          User?    @relation(fields: [userId], references: [id])
 }
 
 model Menu {
   id           Int         @id @default(autoincrement())
-  menu_id      String      @default(cuid())
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now())
+  menuId       String      @default(cuid())
   name         String      @unique
   Restaurant   Restaurant? @relation(fields: [restaurantId], references: [id])
   restaurantId Int?
   menuItems    MenuItems[]
 }
 
+// food strings will be either "notIncluded", "integral", "removable"
 model MenuItems {
-  id          Int     @id @default(autoincrement())
-  item_id     String  @default(cuid())
-  name        String  @unique
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  itemId      String   @default(cuid())
+  name        String   @unique
   course      String
-  price       Decimal
+  price       String
+  description String?
+  gluten      String
+  dairy       String
+  nuts        String
+  peanuts     String
+  sesame      String
+  soya        String
+  sulphites   String
+  eggs        String
+  lupin       String
+  crustacean  String
+  molluscs    String
+  mustard     String
+  celery      String
+  fish        String
+  diet        String
   menuId      Int?
-  integral    String
-  removable   String
-  vegan       Boolean
-  vegetarian  Boolean
-  pescatarian Boolean
-  Menu        Menu?   @relation(fields: [menuId], references: [id])
+  menu        Menu?    @relation(fields: [menuId], references: [id])
 }
