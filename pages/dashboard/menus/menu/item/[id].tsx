@@ -16,7 +16,7 @@ import { useUser } from "../../../../../lib/hooks";
 import prisma from "../../../../../lib/prisma";
 import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebarWithNav";
 
-const MenuItem: NextPage = ({ menuItem }) => {
+const MenuItem: NextPage = ({ menuItem, host }) => {
   const item = menuItem[0];
   const { user } = useUser();
   const router = useRouter();
@@ -42,7 +42,6 @@ const MenuItem: NextPage = ({ menuItem }) => {
   const handleDiet = (e: { target: { value: SetStateAction<string> } }) => {
     setDiet(e.target.value);
   };
-
   const updateData = async (newData: {
     name: string;
     course: string;
@@ -64,7 +63,7 @@ const MenuItem: NextPage = ({ menuItem }) => {
     diet: string;
   }) => {
     const { data } = await axios.patch(
-      `http://localhost:3000/api/menu-item/${item.id}`,
+      `http://${host}/api/menu-item/${item.id}`,
       newData
     );
 
@@ -407,8 +406,10 @@ const MenuItem: NextPage = ({ menuItem }) => {
   );
 };
 
-export const getServerSideProps = async (context: { query: { id: any } }) => {
+export const getServerSideProps = async (context) => {
   const { id } = context.query;
+  const { host } = context.req.headers;
+
   const menuItem = await prisma.menuItems.findMany({
     where: {
       itemId: id,
@@ -418,7 +419,7 @@ export const getServerSideProps = async (context: { query: { id: any } }) => {
     },
   });
   return {
-    props: { menuItem },
+    props: { menuItem, host },
   };
 };
 

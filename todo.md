@@ -6,6 +6,7 @@ Inside the menu is the list of menu items (another table) in which you can modif
 
 ## YOU NEED TO DO A BETTER JOB OF DOCUMENTING AND COMMENTING YOUR CODE, EVERYTHING YOU DO WRITE WHY YOURE DOING IT AND WHAT ITS INTENT IS SO U UNDERSTAND NEXT TIME U READ IT
 
+0. API ROUTES IN PRODUCTION SHOULD MAKE THE CALL TO VERCEL LINK AND NOT LOCALHOST
 1. menuItem form should have course be a select form input that contains the values [starter, main, sides, dessert] - Edit Form
 2. qr code should link to a page (your-menu/[id]) that generates a menu for users to look at this a filtering system above it. - UI/Component
 3. still need to finish crush on restaurants, menu, and menu items (add, delete, edit, patch) -- APIs
