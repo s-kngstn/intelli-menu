@@ -13,7 +13,7 @@ import {
 import { Key } from "react";
 import prisma from "../../../lib/prisma";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
-import TableRow from "../../../src/components/table-row/tableRow";
+import TableRow from "../../../src/components/table-row/menuRow";
 import { useUser } from "../../../lib/hooks";
 
 const Menus: NextPage = ({ menus, restaurant }) => {
