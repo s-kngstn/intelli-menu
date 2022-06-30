@@ -119,7 +119,6 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
       diet,
     };
     updateData(updatedMenu);
-
     router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
