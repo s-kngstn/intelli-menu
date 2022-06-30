@@ -119,6 +119,9 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
       diet,
     };
     updateData(updatedMenu);
+    setTimeout(() => {
+      console.log("..loading");
+    }, 3000);
     router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
