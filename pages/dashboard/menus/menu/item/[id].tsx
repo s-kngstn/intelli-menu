@@ -8,7 +8,9 @@ import {
   RadioGroup,
   Select,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
 import { useUser } from "../../../../../lib/hooks";
 import prisma from "../../../../../lib/prisma";
@@ -17,6 +19,7 @@ import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebar
 const MenuItem: NextPage = ({ menuItem }) => {
   const item = menuItem[0];
   const { user } = useUser();
+  const router = useRouter();
   const [name, setName] = useState(item.name);
   const [course, setCourse] = useState(item.course);
   const [description, setDescription] = useState(item.description);
@@ -40,6 +43,64 @@ const MenuItem: NextPage = ({ menuItem }) => {
     setDiet(e.target.value);
   };
 
+  const updateData = async (newData: {
+    name: string;
+    course: string;
+    description: string;
+    gluten: string;
+    dairy: string;
+    nuts: string;
+    peanuts: string;
+    sesame: string;
+    soya: string;
+    sulphites: string;
+    eggs: string;
+    lupin: string;
+    crustacean: string;
+    molluscs: string;
+    mustard: string;
+    celery: string;
+    fish: string;
+    diet: string;
+  }) => {
+    const { data } = await axios.patch(
+      `http://localhost:3000/api/menu-item/${item.id}`,
+      newData
+    );
+
+    return data;
+  };
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const updatedMenu = {
+      name,
+      course,
+      description,
+      gluten,
+      dairy,
+      nuts,
+      peanuts,
+      sesame,
+      soya,
+      sulphites,
+      eggs,
+      lupin,
+      crustacean,
+      molluscs,
+      mustard,
+      celery,
+      fish,
+      diet,
+    };
+    updateData(updatedMenu);
+    router.push(`/dashboard/menus/menu/${item.menu.id}`);
+  };
+
+  const handleCancel = () => {
+    router.push(`/dashboard/menus/menu/${item.menu.id}`);
+  };
+
   return (
     <SidebarWithHeader user={user}>
       <Box marginTop="4rem">
@@ -59,8 +120,7 @@ const MenuItem: NextPage = ({ menuItem }) => {
               </Text>
             </Stack>
             <Box rounded="lg" bg="white" boxShadow="lg" p={8}>
-              {/* <form onSubmit={handleSubmit}> */}
-              <form>
+              <form onSubmit={handleSubmit}>
                 <Stack spacing={4}>
                   <HStack>
                     <Box>
@@ -315,6 +375,7 @@ const MenuItem: NextPage = ({ menuItem }) => {
                     direction={["column", "row"]}
                   >
                     <Button
+                      type="submit"
                       bg="#045666"
                       color="white"
                       w="full"
@@ -325,6 +386,7 @@ const MenuItem: NextPage = ({ menuItem }) => {
                       Save
                     </Button>
                     <Button
+                      onClick={handleCancel}
                       bg="red.700"
                       color="white"
                       w="full"
@@ -350,6 +412,9 @@ export const getServerSideProps = async (context: { query: { id: any } }) => {
   const menuItem = await prisma.menuItems.findMany({
     where: {
       itemId: id,
+    },
+    include: {
+      menu: true,
     },
   });
   return {
