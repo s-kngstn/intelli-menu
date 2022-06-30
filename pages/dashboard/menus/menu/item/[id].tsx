@@ -120,9 +120,8 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     };
     updateData(updatedMenu);
     setTimeout(() => {
-      console.log("..loading");
+      router.push(`/dashboard/menus/menu/${item.menu.id}`);
     }, 3000);
-    router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
   const handleCancel = () => {
