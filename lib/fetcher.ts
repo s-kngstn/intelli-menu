@@ -15,12 +15,13 @@ export default function fetcher(url: string, data: any) {
 }
 
 export function patchFetcher(url: string, data: any) {
-  console.log(window.location.origin)
+  console.log(window.location.origin);
   return fetch(`${window.location.origin}/api/${url}`, {
     method: "PATCH",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify(data),
   }).then((res) => {
