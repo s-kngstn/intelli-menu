@@ -65,7 +65,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     diet: string;
   }) => {
     const { data } = await axios.patch(
-      `${host}/api/menu-item/${item.id}`,
+      `http://${host}/api/menu-item/${item.id}`,
       newData
     );
 
@@ -117,8 +117,12 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
       fish,
       diet,
     };
-    updateData(updatedMenu);
-    router.push(`/dashboard/menus/menu/${item.menu.id}`);
+    try {
+      updateData(updatedMenu);
+      router.push(`/dashboard/menus/menu/${item.menu.id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleCancel = () => {
