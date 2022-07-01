@@ -42,6 +42,12 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
   const handleDiet = (e: { target: { value: SetStateAction<string> } }) => {
     setDiet(e.target.value);
   };
+
+  const handleCourse = (e: { target: { value: SetStateAction<string> } }) => {
+    setCourse(e.target.value);
+  };
+
+
   const updateData = async (newData: {
     name: string;
     course: string;
@@ -108,6 +114,8 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
+  console.log(course)
+
   return (
     <SidebarWithHeader user={user}>
       <Box marginTop="4rem">
@@ -141,13 +149,21 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
                       </FormControl>
                     </Box>
                     <Box>
-                      <FormControl id="course" isRequired>
-                        <FormLabel fontWeight="bold">Course</FormLabel>
-                        <Input
-                          type="text"
+                      <FormControl isRequired>
+                        <FormLabel fontWeight="bold" htmlFor="course">
+                          Course
+                        </FormLabel>
+                        <Select
+                          onChange={handleCourse}
                           value={course}
-                          onChange={(e) => setCourse(e.target.value)}
-                        />
+                          id="course"
+                          placeholder="Select course"
+                        >
+                          <option value="Starters">Starters</option>
+                          <option value="Mains">Main</option>
+                          <option value="Sides">Sides</option>
+                          <option value="Dessert">Dessert</option>
+                        </Select>
                       </FormControl>
                     </Box>
                   </HStack>
