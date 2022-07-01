@@ -65,7 +65,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     diet: string;
   }) => {
     const { data } = await axios.patch(
-      `http://${host}/api/menu-item/${item.id}`,
+      `https://${host}/api/menu-item/${item.id}`,
       newData
     );
 
