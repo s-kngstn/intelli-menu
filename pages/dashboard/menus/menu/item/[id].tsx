@@ -119,7 +119,9 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     };
     try {
       updateData(updatedMenu);
-      router.push(`/dashboard/menus/menu/${item.menu.id}`);
+      setTimeout(() => {
+        router.push(`/dashboard/menus/menu/${item.menu.id}`);
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
