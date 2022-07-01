@@ -3,7 +3,7 @@ import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { Key } from "react";
 import { useUser } from "../../../../lib/hooks";
-import prisma from "../../../../lib/prisma";
+import { prisma } from "../../../../lib/prisma";
 import SidebarWithHeader from "../../../../src/components/nav-sidebar/sidebarWithNav";
 import MenuItemRow from "../../../../src/components/table-row/menuItemRow";
 
