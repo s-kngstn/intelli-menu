@@ -11,7 +11,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { Key } from "react";
-import prisma from "../../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
 import TableRow from "../../../src/components/table-row/menuRow";
 import { useUser } from "../../../lib/hooks";

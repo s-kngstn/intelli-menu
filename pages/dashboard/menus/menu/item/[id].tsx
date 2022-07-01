@@ -13,7 +13,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
 import { useUser } from "../../../../../lib/hooks";
-import prisma from "../../../../../lib/prisma";
+import { prisma } from "../../../../../lib/prisma";
 import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebarWithNav";
 
 const MenuItem: NextPage = ({ menuItem, host }) => {
@@ -62,6 +62,9 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     fish: string;
     diet: string;
   }) => {
+    // AXIOS REQUESTS MUST TO BE HTTPS ON DEPLOYMENT TO PREVENT
+    // (blocked:mixed-content)
+    // WILL ONLY WORK AS HTTP IN PRODUCTION
     const { data } = await axios.patch(
       `http://${host}/api/menu-item/${item.id}`,
       newData
