@@ -10,12 +10,6 @@ import MenuItemRow from "../../../../src/components/table-row/menuItemRow";
 const Menu: NextPage = ({ menuItems }) => {
   const { user } = useUser();
   const menuDetails = menuItems[0].menu;
-  // below needs to be a function that turns a string from the db into an array
-  // const integral = menuItems[0].integral;
-  // console.log(integral);
-  // const test = integral.replace(/[\[|\]|\,']/g, "");
-  // const newArr = test.split(" ");
-  // console.log(typeof newArr)
 
   return (
     <SidebarWithHeader user={user}>
