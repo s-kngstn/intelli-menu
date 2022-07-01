@@ -12,13 +12,11 @@ import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
-// import { patchFetcher } from "../../../../../lib/fetcher";
 import { useUser } from "../../../../../lib/hooks";
 import prisma from "../../../../../lib/prisma";
 import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebarWithNav";
 
 const MenuItem: NextPage = ({ menuItem, host }) => {
-  console.log(host);
   const item = menuItem[0];
   const { user } = useUser();
   const router = useRouter();
@@ -65,35 +63,12 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     diet: string;
   }) => {
     const { data } = await axios.patch(
-      `https://${host}/api/menu-item/${item.id}`,
+      `http://${host}/api/menu-item/${item.id}`,
       newData
     );
 
     return data;
   };
-
-  // const patchItem = (body: {
-  //   name: string;
-  //   course: string;
-  //   description: string;
-  //   gluten: string;
-  //   dairy: string;
-  //   nuts: string;
-  //   peanuts: string;
-  //   sesame: string;
-  //   soya: string;
-  //   sulphites: string;
-  //   eggs: string;
-  //   lupin: string;
-  //   crustacean: string;
-  //   molluscs: string;
-  //   mustard: string;
-  //   celery: string;
-  //   fish: string;
-  //   diet: string;
-  // }) => {
-  //   return patchFetcher(`menu-item/${item.id}`, body);
-  // };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
