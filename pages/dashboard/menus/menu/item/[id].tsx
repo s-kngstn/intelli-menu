@@ -95,7 +95,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
   //   return patchFetcher(`menu-item/${item.id}`, body);
   // };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const updatedMenu = {
       name,
@@ -118,10 +118,9 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
       diet,
     };
     try {
-      updateData(updatedMenu);
-      setTimeout(() => {
-        router.push(`/dashboard/menus/menu/${item.menu.id}`);
-      }, 3000);
+      await updateData(updatedMenu);
+
+      router.push(`/dashboard/menus/menu/${item.menu.id}`);
     } catch (error) {
       console.log(error);
     }
