@@ -56,7 +56,7 @@ const Menu: NextPage = ({ menuItems, menu, id }) => {
         <Flex py={2} justifyContent="space-between" justifyItems="end">
           <Box>
             <Heading as="h4" size="md">
-              {menuItems[0].name}
+              {menuDetails.name}
             </Heading>
           </Box>
           <LinkBox>

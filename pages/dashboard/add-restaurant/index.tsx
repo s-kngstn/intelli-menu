@@ -12,6 +12,7 @@ import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNa
 
 const AddRestaurant: NextPage = () => {
   const { user } = useUser();
+  console.log(user)
   return (
     <SidebarWithHeader user={user}>
       <Flex minH="95vh" align="center" justify="center" bg="gray.100">

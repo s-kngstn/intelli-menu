@@ -3,7 +3,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { useUser } from "../../lib/hooks";
 import SidebarWithHeader from "../../src/components/nav-sidebar/sidebarWithNav";
 
-const QrPage = () => {
+const QrPage = ({ id, host }) => {
   const { user } = useUser();
   return (
     <SidebarWithHeader user={user}>
@@ -31,7 +31,7 @@ const QrPage = () => {
           >
             <QRCodeCanvas
               size={300}
-              value="https://www.samkingston.xyz"
+              value={`http://${host}/your-menu/${id}`}
               bgColor="#ffffff"
               fgColor="#000000"
               level="H"
@@ -54,5 +54,13 @@ const QrPage = () => {
 
 /// GET SERVER SIDE PROPS FOR THE MENU SO YOU CAN LINK THE ID TO THE PAGE
 // GET CONTEXT AND USE THE ID TO CHANGE TO GUEST MENU PAGE VIA QR CODE
+export const getServerSideProps = async (context) => {
+  const { id } = context.query;
+  const { host } = context.req.headers;
+
+  return {
+    props: { id, host },
+  };
+};
 
 export default QrPage;
