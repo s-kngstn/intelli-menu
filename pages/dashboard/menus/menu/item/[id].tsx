@@ -12,13 +12,12 @@ import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
-// import { patchFetcher } from "../../../../../lib/fetcher";
+import jwt from "jsonwebtoken";
 import { useUser } from "../../../../../lib/hooks";
-import prisma from "../../../../../lib/prisma";
+import { prisma } from "../../../../../lib/prisma";
 import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebarWithNav";
 
 const MenuItem: NextPage = ({ menuItem, host }) => {
-  console.log(host);
   const item = menuItem[0];
   const { user } = useUser();
   const router = useRouter();
@@ -44,6 +43,11 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
   const handleDiet = (e: { target: { value: SetStateAction<string> } }) => {
     setDiet(e.target.value);
   };
+
+  const handleCourse = (e: { target: { value: SetStateAction<string> } }) => {
+    setCourse(e.target.value);
+  };
+
   const updateData = async (newData: {
     name: string;
     course: string;
@@ -64,36 +68,16 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     fish: string;
     diet: string;
   }) => {
+    // AXIOS REQUESTS MUST TO BE HTTPS ON DEPLOYMENT TO PREVENT
+    // (blocked:mixed-content)
+    // WILL ONLY WORK AS HTTP IN PRODUCTION
     const { data } = await axios.patch(
-      `https://${host}/api/menu-item/${item.id}`,
+      `http://${host}/api/menu-item/${item.id}`,
       newData
     );
 
     return data;
   };
-
-  // const patchItem = (body: {
-  //   name: string;
-  //   course: string;
-  //   description: string;
-  //   gluten: string;
-  //   dairy: string;
-  //   nuts: string;
-  //   peanuts: string;
-  //   sesame: string;
-  //   soya: string;
-  //   sulphites: string;
-  //   eggs: string;
-  //   lupin: string;
-  //   crustacean: string;
-  //   molluscs: string;
-  //   mustard: string;
-  //   celery: string;
-  //   fish: string;
-  //   diet: string;
-  // }) => {
-  //   return patchFetcher(`menu-item/${item.id}`, body);
-  // };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -130,6 +114,8 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
+  console.log(course);
+
   return (
     <SidebarWithHeader user={user}>
       <Box marginTop="4rem">
@@ -163,13 +149,21 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
                       </FormControl>
                     </Box>
                     <Box>
-                      <FormControl id="course" isRequired>
-                        <FormLabel fontWeight="bold">Course</FormLabel>
-                        <Input
-                          type="text"
+                      <FormControl isRequired>
+                        <FormLabel fontWeight="bold" htmlFor="course">
+                          Course
+                        </FormLabel>
+                        <Select
+                          onChange={handleCourse}
                           value={course}
-                          onChange={(e) => setCourse(e.target.value)}
-                        />
+                          id="course"
+                          placeholder="Select course"
+                        >
+                          <option value="Starters">Starters</option>
+                          <option value="Mains">Main</option>
+                          <option value="Sides">Sides</option>
+                          <option value="Dessert">Dessert</option>
+                        </Select>
                       </FormControl>
                     </Box>
                   </HStack>
@@ -439,9 +433,43 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
   const { host } = context.req.headers;
-  console.log(context.req.headers);
 
-  console.log(host);
+  const token = context.req.cookies.INTELLI_ACCESS_TOKEN;
+
+  // const verifiedUser = jwt.verify(token, "hello");
+  // console.log("testing: ", verifiedUser.id)
+
+  if (!token) {
+    let user;
+
+    try {
+      const verifiedUser = jwt.verify(token, "hello");
+      user = await prisma.user.findUnique({
+        where: {
+          id: Number(verifiedUser.id),
+        },
+      });
+      console.log(user);
+      // If there is no match we throw the error not a real user
+      if (!user) {
+        // throw new Error("Not real user");
+        return {
+          redirect: {
+            permanent: false,
+            destination: "/signin",
+          },
+        };
+      }
+    } catch (e) {
+      console.log(e);
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/signin",
+        },
+      };
+    }
+  }
 
   const menuItem = await prisma.menuItems.findMany({
     where: {

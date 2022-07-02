@@ -102,7 +102,13 @@ const MobileNav = ({ user, onOpen, ...rest }: MobileProps) => {
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <LinkBox>
+                <Link href="/api/signout" style={{ textDecoration: "none" }}>
+                  <LinkOverlay>
+                    <MenuItem>Sign out</MenuItem>
+                  </LinkOverlay>
+                </Link>
+              </LinkBox>
             </MenuList>
           </Menu>
         </Flex>

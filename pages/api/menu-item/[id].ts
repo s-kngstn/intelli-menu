@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
-import prisma from "../../../lib/prisma";
-// import { validateRoute } from "../../../lib/routeValidator";
+import { prisma } from "../../../lib/prisma";
 
 const handler = nc()
   .get(async (req: NextApiRequest, res: NextApiResponse) => {

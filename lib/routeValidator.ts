@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "./prisma";
+import { prisma } from "./prisma";
 
 // This is a place for all of the helpers I will use to help me with athentication.
 

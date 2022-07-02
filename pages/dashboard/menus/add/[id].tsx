@@ -1,18 +1,41 @@
 import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
-import {
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-} from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import axios from "axios";
 import { NextPage } from "next";
-import { useUser } from "../../../lib/hooks";
-import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useUser } from "../../../../lib/hooks";
+import SidebarWithHeader from "../../../../src/components/nav-sidebar/sidebarWithNav";
 
-const AddRestaurant: NextPage = () => {
+const AddMenuForm: NextPage = ({ host, id }) => {
   const { user } = useUser();
-  console.log(user)
+  const router = useRouter();
+  const [name, setName] = useState("");
+  // console.log(user)
+
+  const create = async (newMenu) => {
+    const { data } = await axios.post(`http://${host}/api/menu/add`, newMenu);
+
+    return data;
+  };
+
+  const restaurantID = Number(id);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const createMenu = {
+      name,
+      id: restaurantID,
+    };
+
+    try {
+      await create(createMenu);
+      router.push(`/dashboard/menus/${restaurantID}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <SidebarWithHeader user={user}>
       <Flex minH="95vh" align="center" justify="center" bg="gray.100">
@@ -24,27 +47,18 @@ const AddRestaurant: NextPage = () => {
               fontFamily="var(--chakra-fonts-heading)"
               color="blackAlpha.800"
             >
-              Add Restaurant
+              Add Menu
             </Heading>
           </Stack>
           <Box rounded="lg" bg="white" boxShadow="lg" p={8}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <Stack spacing={4}>
                 <FormControl id="name" isRequired>
                   <FormLabel>Name</FormLabel>
                   <Input
                     type="text"
-                    // onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                   />
-                </FormControl>
-                <FormControl id="address" isRequired>
-                  <FormLabel>Address</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type="text"
-                      // onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </InputGroup>
                 </FormControl>
                 <Stack spacing={10} pt={2}>
                   <Button
@@ -70,4 +84,14 @@ const AddRestaurant: NextPage = () => {
   );
 };
 
-export default AddRestaurant;
+export const getServerSideProps = async (context) => {
+  const { host } = context.req.headers;
+  const { id } = context.query;
+  console.log(context);
+
+  return {
+    props: { host, id },
+  };
+};
+
+export default AddMenuForm;
