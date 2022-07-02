@@ -47,7 +47,7 @@ const AddItem: NextPage = ({ host, id }) => {
 
   const createData = async (newData) => {
     const { data } = await axios.post(
-      `http://${host}/api/menu-item/add`,
+      `https://${host}/api/menu-item/add`,
       newData
     );
 

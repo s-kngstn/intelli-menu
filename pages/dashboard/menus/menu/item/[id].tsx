@@ -68,11 +68,11 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     fish: string;
     diet: string;
   }) => {
-    // AXIOS REQUESTS MUST TO BE HTTPS ON DEPLOYMENT TO PREVENT
+    // AXIOS REQUESTS MUST TO BE httpsS ON DEPLOYMENT TO PREVENT
     // (blocked:mixed-content)
-    // WILL ONLY WORK AS HTTP IN PRODUCTION
+    // WILL ONLY WORK AS https IN PRODUCTION
     const { data } = await axios.patch(
-      `http://${host}/api/menu-item/${item.id}`,
+      `https://${host}/api/menu-item/${item.id}`,
       newData
     );
 

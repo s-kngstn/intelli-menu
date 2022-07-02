@@ -14,7 +14,7 @@ const AddMenuForm: NextPage = ({ host, id }) => {
   // console.log(user)
 
   const create = async (newMenu) => {
-    const { data } = await axios.post(`http://${host}/api/menu/add`, newMenu);
+    const { data } = await axios.post(`https://${host}/api/menu/add`, newMenu);
 
     return data;
   };

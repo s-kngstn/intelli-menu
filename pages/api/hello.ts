@@ -1,4 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+// Next.js API route support: httpss://nextjs.org/docs/api-routes/introduction
 // Serverless functions
 import type { NextApiRequest, NextApiResponse } from "next";
 

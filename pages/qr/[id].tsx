@@ -31,7 +31,7 @@ const QrPage = ({ id, host }) => {
           >
             <QRCodeCanvas
               size={300}
-              value={`http://${host}/your-menu/${id}`}
+              value={`https://${host}/your-menu/${id}`}
               bgColor="#ffffff"
               fgColor="#000000"
               level="H"
