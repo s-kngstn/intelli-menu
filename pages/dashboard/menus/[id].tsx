@@ -9,6 +9,9 @@ import {
   Box,
   Flex,
   Heading,
+  LinkBox,
+  Link,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import { Key } from "react";
 import jwt from "jsonwebtoken";
@@ -20,6 +23,7 @@ import { useUser } from "../../../lib/hooks";
 const Menus: NextPage = ({ menus, restaurant }) => {
   const { user } = useUser();
   const restaurantDetails = restaurant[0];
+  console.log(restaurantDetails)
 
   return (
     <SidebarWithHeader user={user}>
@@ -33,7 +37,11 @@ const Menus: NextPage = ({ menus, restaurant }) => {
             {/* <p>212 Midway Rd</p> */}
             <p>{restaurantDetails.address}</p>
           </Box>
-          <p>+ Add menu</p>
+          <LinkBox>
+            <Link href={`/dashboard/menus/add/${restaurantDetails.id}`}>
+              <LinkOverlay>+ Add Menu</LinkOverlay>
+            </Link>
+          </LinkBox>
         </Flex>
         <TableContainer>
           <Table variant="striped" colorScheme="cyan">

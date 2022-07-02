@@ -23,7 +23,7 @@ const AddRestaurant: NextPage = () => {
               fontFamily="var(--chakra-fonts-heading)"
               color="blackAlpha.800"
             >
-              Add Menu
+              Add Restaurant
             </Heading>
           </Stack>
           <Box rounded="lg" bg="white" boxShadow="lg" p={8}>
