@@ -12,6 +12,7 @@ import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
+import jwt from "jsonwebtoken";
 import { useUser } from "../../../../../lib/hooks";
 import { prisma } from "../../../../../lib/prisma";
 import SidebarWithHeader from "../../../../../src/components/nav-sidebar/sidebarWithNav";
@@ -46,7 +47,6 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
   const handleCourse = (e: { target: { value: SetStateAction<string> } }) => {
     setCourse(e.target.value);
   };
-
 
   const updateData = async (newData: {
     name: string;
@@ -114,7 +114,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
-  console.log(course)
+  console.log(course);
 
   return (
     <SidebarWithHeader user={user}>
@@ -433,9 +433,43 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
   const { host } = context.req.headers;
-  console.log(context.req.headers);
 
-  console.log(host);
+  const token = context.req.cookies.INTELLI_ACCESS_TOKEN;
+
+  // const verifiedUser = jwt.verify(token, "hello");
+  // console.log("testing: ", verifiedUser.id)
+
+  if (!token) {
+    let user;
+
+    try {
+      const verifiedUser = jwt.verify(token, "hello");
+      user = await prisma.user.findUnique({
+        where: {
+          id: Number(verifiedUser.id),
+        },
+      });
+      console.log(user);
+      // If there is no match we throw the error not a real user
+      if (!user) {
+        // throw new Error("Not real user");
+        return {
+          redirect: {
+            permanent: false,
+            destination: "/signin",
+          },
+        };
+      }
+    } catch (e) {
+      console.log(e);
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/signin",
+        },
+      };
+    }
+  }
 
   const menuItem = await prisma.menuItems.findMany({
     where: {

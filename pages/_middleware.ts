@@ -4,11 +4,16 @@ import { NextResponse } from "next/server";
  * middleware for checking if user is signed if
  * once user is verified they are given access to the signedinpages
  */
-
+// Use REGEX on the protected routes so that any number or let range will be also blocked
 const signedinPages = [
   "/dashboard",
   "/dashboard/add-restaurant",
   "/dashboard/menus",
+  "/dashboard/menus/menu",
+  "/dashboard/menus/menu/item",
+  "/dashboard/menus/menu/item/:id",
+  "/dashboard/qr",
+  "/dashboard/qr/:id",
 ];
 
 // change logic so pages in array are ONLY ones allowed without a cookie 😎

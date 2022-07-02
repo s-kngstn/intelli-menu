@@ -1,7 +1,15 @@
-import { Box, Flex, Heading } from "@chakra-ui/layout";
+import {
+  Box,
+  Flex,
+  Heading,
+  Link,
+  LinkBox,
+  LinkOverlay,
+} from "@chakra-ui/layout";
 import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { Key } from "react";
+import jwt from "jsonwebtoken";
 import { useUser } from "../../../../lib/hooks";
 import { prisma } from "../../../../lib/prisma";
 import SidebarWithHeader from "../../../../src/components/nav-sidebar/sidebarWithNav";
@@ -20,7 +28,11 @@ const Menu: NextPage = ({ menuItems }) => {
               {menuDetails.name}
             </Heading>
           </Box>
-          <p>+ Add dish</p>
+          <LinkBox>
+            <Link href={`/dashboard/menus/menu/add/${menuDetails.id}`}>
+              <LinkOverlay>+ Add Dish</LinkOverlay>
+            </Link>
+          </LinkBox>
         </Flex>
         <TableContainer>
           <Table variant="striped" colorScheme="cyan">
@@ -53,6 +65,30 @@ const Menu: NextPage = ({ menuItems }) => {
 
 export const getServerSideProps = async (context: { query: { id: any } }) => {
   const { id } = context.query;
+  const token = context.req.cookies.INTELLI_ACCESS_TOKEN;
+
+  if (!token) {
+    let user;
+
+    try {
+      const { id } = jwt.verify(token, "hello");
+      user = await prisma.user.findUnique({
+        where: { id },
+      });
+      // If there is no match we throw the error not a real user
+      if (!user) {
+        throw new Error("Not real user");
+      }
+    } catch (e) {
+      console.log(e);
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/signin",
+        },
+      };
+    }
+  }
   const menuItems = await prisma.menuItems.findMany({
     where: {
       menuId: Number(id),

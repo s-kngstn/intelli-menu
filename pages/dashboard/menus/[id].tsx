@@ -11,6 +11,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { Key } from "react";
+import jwt from "jsonwebtoken";
 import { prisma } from "../../../lib/prisma";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
 import TableRow from "../../../src/components/table-row/menuRow";
@@ -62,6 +63,31 @@ const Menus: NextPage = ({ menus, restaurant }) => {
 
 export const getServerSideProps = async (context: { query: { id: any } }) => {
   const { id } = context.query;
+  const token = context.req.cookies.INTELLI_ACCESS_TOKEN;
+
+  if (!token) {
+    let user;
+
+    try {
+      const { id } = jwt.verify(token, "hello");
+      user = await prisma.user.findUnique({
+        where: { id },
+      });
+      // If there is no match we throw the error not a real user
+      if (!user) {
+        throw new Error("Not real user");
+      }
+    } catch (e) {
+      console.log(e);
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/signin",
+        },
+      };
+    }
+  }
+
   const menus = await prisma.menu.findMany({
     where: {
       restaurantId: Number(id),

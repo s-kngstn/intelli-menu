@@ -25,7 +25,6 @@ export const restaurantsData = [
             mustard: "integral",
             celery: "removable",
             fish: "notIncluded",
-
             diet: "noDiet",
           },
           {
