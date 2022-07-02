@@ -1,6 +1,8 @@
 import { Box, Container, Flex, Heading, Spacer, Text } from "@chakra-ui/layout";
+import { prisma } from "../../lib/prisma";
 
-const YourMenu = () => {
+const YourMenu = ({ menuItems }) => {
+  console.log(menuItems);
   return (
     <Container maxW="container.lg" bg="whiteAlpha.200" color="blackAlpha.800">
       <Heading as="h1" p="2" size="2xl" textAlign="center">
@@ -151,5 +153,21 @@ const YourMenu = () => {
 
 // GET SERVER SIDE PROPS FOR ALL THE MENU ITEMS AND MENU INFO
 // GENERATE THE QR CODE ON A PAGE BY ITSELF, WHILE THIS PAGE WILL BE THE ONE THE QR CODE LINKS TOO
+
+export const getServerSideProps = async (context: { query: { id: any } }, req) => {
+  const { id } = context.query;
+  const menuItems = await prisma.menuItems.findMany({
+    where: {
+      menuId: Number(id),
+    },
+    include: {
+      menu: true,
+    },
+  });
+
+  return {
+    props: { menuItems },
+  };
+};
 
 export default YourMenu;

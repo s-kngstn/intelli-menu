@@ -8,10 +8,11 @@ Inside the menu is the list of menu items (another table) in which you can modif
 
 0. API ROUTES IN PRODUCTION SHOULD MAKE THE CALL TO VERCEL LINK AND NOT LOCALHOST ✅
 1. menuItem form should have course be a select form input that contains the values [starter, main, sides, dessert] - Edit Form ✅
-2. qr code should link to a page (your-menu/[id]) that generates a menu for users to look at this a filtering system above it. - UI/Component
-3. still need to finish crush on restaurants, menu, and menu items (add, delete, edit, patch) -- APIs
-4. need to have some modals to confirm delete add edit etc...- UI/Component
-5. protect more page routes to restrict un authorized users.
+2. MAKE YOUR DATA SEED LARGER, SO YOU HAVE MORE MENU ITEMS TO WORK WITH ON THE YOUR-MENUS/[ID] PAGE!!!!!
+3. qr code should link to a page (your-menu/[id]) that generates a menu for users to look at this a filtering system above it. - UI/Component
+4. still need to finish crush on restaurants, menu, and menu items (add, delete, edit, patch) -- APIs
+5. need to have some modals to confirm delete add edit etc...- UI/Component
+6. protect more page routes to restrict un authorized users.
 
 ## I would like to add
 

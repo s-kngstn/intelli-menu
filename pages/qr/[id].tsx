@@ -36,14 +36,14 @@ const QrPage = () => {
               fgColor="#000000"
               level="H"
               includeMargin={false}
-              imageSettings={{
-                src: "https://i.ibb.co/FXncfpp/inteli-logo-qr.png",
-                x: undefined,
-                y: undefined,
-                height: 20,
-                width: 100,
-                excavate: true,
-              }}
+              // imageSettings={{
+              //   src: "https://i.ibb.co/FXncfpp/inteli-logo-qr.png",
+              //   x: undefined,
+              //   y: undefined,
+              //   height: 20,
+              //   width: 100,
+              //   excavate: true,
+              // }}
             />
           </Box>
         </Flex>
