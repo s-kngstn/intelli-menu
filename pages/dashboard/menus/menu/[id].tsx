@@ -5,6 +5,7 @@ import {
   Link,
   LinkBox,
   LinkOverlay,
+  Text,
 } from "@chakra-ui/layout";
 import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import { NextPage } from "next";
@@ -15,11 +16,11 @@ import { prisma } from "../../../../lib/prisma";
 import SidebarWithHeader from "../../../../src/components/nav-sidebar/sidebarWithNav";
 import MenuItemRow from "../../../../src/components/table-row/menuItemRow";
 
-const Menu: NextPage = ({ menuItems }) => {
+const Menu: NextPage = ({ menuItems, menu, id }) => {
   const { user } = useUser();
-  const menuDetails = menuItems[0].menu;
+  const menuDetails = menu[0];
 
-  return (
+  return menuItems.length === 0 ? (
     <SidebarWithHeader user={user}>
       <Box marginTop="5rem">
         <Flex py={2} justifyContent="space-between" justifyItems="end">
@@ -27,9 +28,39 @@ const Menu: NextPage = ({ menuItems }) => {
             <Heading as="h4" size="md">
               {menuDetails.name}
             </Heading>
+            <Text>Please add some items</Text>
           </Box>
           <LinkBox>
             <Link href={`/dashboard/menus/menu/add/${menuDetails.id}`}>
+              <LinkOverlay>+ Add Dish</LinkOverlay>
+            </Link>
+          </LinkBox>
+        </Flex>
+        <TableContainer>
+          <Table variant="striped" colorScheme="cyan">
+            <Thead>
+              <Tr>
+                <Th>#</Th>
+                <Th>Name</Th>
+                <Th>Added</Th>
+              </Tr>
+            </Thead>
+            <Tbody />
+          </Table>
+        </TableContainer>
+      </Box>
+    </SidebarWithHeader>
+  ) : (
+    <SidebarWithHeader user={user}>
+      <Box marginTop="5rem">
+        <Flex py={2} justifyContent="space-between" justifyItems="end">
+          <Box>
+            <Heading as="h4" size="md">
+              {menuItems[0].name}
+            </Heading>
+          </Box>
+          <LinkBox>
+            <Link href={`/dashboard/menus/menu/add/${menuItems[0].id}`}>
               <LinkOverlay>+ Add Dish</LinkOverlay>
             </Link>
           </LinkBox>
@@ -98,8 +129,14 @@ export const getServerSideProps = async (context: { query: { id: any } }) => {
     },
   });
 
+  const menu = await prisma.menu.findMany({
+    where: {
+      id: Number(id),
+    },
+  });
+
   return {
-    props: { menuItems },
+    props: { menuItems, menu },
   };
 };
 
