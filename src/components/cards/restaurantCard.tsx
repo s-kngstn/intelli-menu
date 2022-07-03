@@ -30,7 +30,12 @@ const RestaurantCard = ({ restaurant }) => {
       />
       <Box p={6}>
         <Stack spacing={0} align="center" mb={5}>
-          <Heading fontSize="2xl" fontWeight={500} fontFamily="body">
+          <Heading
+            fontSize="2xl"
+            textAlign="center"
+            fontWeight={500}
+            fontFamily="body"
+          >
             {restaurant.name}
           </Heading>
           <Text color="gray.500">{restaurant.address}</Text>
