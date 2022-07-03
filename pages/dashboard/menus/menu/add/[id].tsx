@@ -19,6 +19,7 @@ const AddItem: NextPage = ({ host, id }) => {
   const { user } = useUser();
   const router = useRouter();
   const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
   const [course, setCourse] = useState("");
   const [description, setDescription] = useState("");
   const [gluten, setGluten] = useState("integral");
@@ -61,7 +62,7 @@ const AddItem: NextPage = ({ host, id }) => {
     const createItem = {
       name,
       course,
-      price: "22",
+      price,
       description,
       gluten,
       dairy,
@@ -122,21 +123,15 @@ const AddItem: NextPage = ({ host, id }) => {
                       </FormControl>
                     </Box>
                     <Box>
-                      <FormControl isRequired>
-                        <FormLabel fontWeight="bold" htmlFor="course">
-                          Course
+                      <FormControl id="name" isRequired>
+                        <FormLabel fontWeight="bold">
+                          Price (e.g: 17.50)
                         </FormLabel>
-                        <Select
-                          onChange={handleCourse}
-                          value={course}
-                          id="course"
-                          placeholder="Select course"
-                        >
-                          <option value="Starters">Starters</option>
-                          <option value="Mains">Main</option>
-                          <option value="Sides">Sides</option>
-                          <option value="Dessert">Dessert</option>
-                        </Select>
+                        <Input
+                          type="text"
+                          value={price}
+                          onChange={(e) => setPrice(e.target.value)}
+                        />
                       </FormControl>
                     </Box>
                   </HStack>
@@ -149,6 +144,22 @@ const AddItem: NextPage = ({ host, id }) => {
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="bold" htmlFor="course">
+                      Course
+                    </FormLabel>
+                    <Select
+                      onChange={handleCourse}
+                      value={course}
+                      id="course"
+                      placeholder="Select course"
+                    >
+                      <option value="Starters">Starters</option>
+                      <option value="Mains">Main</option>
+                      <option value="Sides">Sides</option>
+                      <option value="Dessert">Dessert</option>
+                    </Select>
                   </FormControl>
                   <FormControl isRequired>
                     <FormLabel fontWeight="bold" htmlFor="diet">
