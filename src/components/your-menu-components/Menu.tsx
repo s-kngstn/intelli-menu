@@ -29,40 +29,44 @@ const Menu = ({ children, starters, mains, sides, dessert }) => {
             </LinkOverlay>
           </Link>
         </LinkBox>
-        <Heading size="lg" as="h3">
+        <Heading marginTop="1rem" size="lg" as="h3">
           Starters
         </Heading>
         <Box
           borderBottom="2px"
           borderColor="blackAlpha.800"
           borderStyle="solid"
+          marginBottom="1rem"
         />
         {starters}
-        <Heading size="lg" as="h3">
+        <Heading marginTop="1rem" size="lg" as="h3">
           Mains
         </Heading>
         <Box
           borderBottom="2px"
           borderColor="blackAlpha.800"
           borderStyle="solid"
+          marginBottom="1rem"
         />
         {mains}
-        <Heading size="lg" as="h3">
+        <Heading marginTop="1rem" size="lg" as="h3">
           Sides
         </Heading>
         <Box
           borderBottom="2px"
           borderColor="blackAlpha.800"
           borderStyle="solid"
+          marginBottom="1rem"
         />
         {sides}
-        <Heading size="lg" as="h3">
+        <Heading marginTop="1rem" size="lg" as="h3">
           Desserts
         </Heading>
         <Box
           borderBottom="2px"
           borderColor="blackAlpha.800"
           borderStyle="solid"
+          marginBottom="1rem"
         />
         {dessert}
       </Container>
