@@ -70,7 +70,9 @@ model MenuItems {
   mustard     String
   celery      String
   fish        String
-  diet        String
+  vegan       String
+  veg         String
+  pescatarian String
   menuId      Int?
   menu        Menu?    @relation(fields: [menuId], references: [id])
 }

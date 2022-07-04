@@ -25,7 +25,9 @@ const handler = nc().post(async (req: NextApiRequest, res: NextApiResponse) => {
       mustard: req.body.mustard,
       celery: req.body.celery,
       fish: req.body.fish,
-      diet: req.body.diet,
+      vegan: req.body.vegan,
+      veg: req.body.veg,
+      pescatarian: req.body.pescatarian,
       menuId: req.body.id,
     },
   });

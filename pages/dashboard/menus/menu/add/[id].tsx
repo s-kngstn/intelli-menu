@@ -36,10 +36,22 @@ const AddItem: NextPage = ({ host, id }) => {
   const [mustard, setMustard] = useState("integral");
   const [celery, setCelery] = useState("integral");
   const [fish, setFish] = useState("integral");
-  const [diet, setDiet] = useState("integral");
+  const [vegan, setVegan] = useState("integral");
+  const [veg, setVeg] = useState("integral");
+  const [pescatarian, setPescatarian] = useState("integral");
 
-  const handleDiet = (e: { target: { value: SetStateAction<string> } }) => {
-    setDiet(e.target.value);
+  const handleVegan = (e: { target: { value: SetStateAction<string> } }) => {
+    setVegan(e.target.value);
+  };
+
+  const handleVeg = (e: { target: { value: SetStateAction<string> } }) => {
+    setVeg(e.target.value);
+  };
+
+  const handlePescatarian = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setPescatarian(e.target.value);
   };
 
   const handleCourse = (e: { target: { value: SetStateAction<string> } }) => {
@@ -78,7 +90,9 @@ const AddItem: NextPage = ({ host, id }) => {
       mustard,
       celery,
       fish,
-      diet,
+      vegan,
+      veg,
+      pescatarian,
       id: menuID,
     };
     try {
@@ -163,18 +177,59 @@ const AddItem: NextPage = ({ host, id }) => {
                   </FormControl>
                   <FormControl isRequired>
                     <FormLabel fontWeight="bold" htmlFor="diet">
-                      Is this dish vegan, vegetarian or pescatarian?
+                      What are the vegan options for this dish?
                     </FormLabel>
                     <Select
-                      onChange={handleDiet}
-                      value={diet}
+                      onChange={handleVegan}
+                      value={vegan}
                       id="diet"
-                      placeholder="Select diet"
+                      placeholder="Select vegan option"
                     >
-                      <option value="noDiet">No</option>
-                      <option value="vegan">Vegan</option>
-                      <option value="vegetarian">Vegetarian</option>
-                      <option value="pescatarian">Pescatarian</option>
+                      <option value="notIncluded">This dish is vegan</option>
+                      <option value="integral">This dish is NOT vegan</option>
+                      <option value="removable">Dish can be made vegan</option>
+                    </Select>
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="bold" htmlFor="diet">
+                      What are the vegetarian options for this dish?
+                    </FormLabel>
+                    <Select
+                      onChange={handleVeg}
+                      value={veg}
+                      id="diet"
+                      placeholder="Select vegetarian option"
+                    >
+                      <option value="notIncluded">
+                        This dish is vegetarian
+                      </option>
+                      <option value="integral">
+                        This dish is NOT vegetarian
+                      </option>
+                      <option value="removable">
+                        Dish can be made vegetarian
+                      </option>
+                    </Select>
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="bold" htmlFor="diet">
+                      What are the pescatarian options for this dish?
+                    </FormLabel>
+                    <Select
+                      onChange={handlePescatarian}
+                      value={pescatarian}
+                      id="diet"
+                      placeholder="Select pescatarian option"
+                    >
+                      <option value="notIncluded">
+                        This dish is pescatarian
+                      </option>
+                      <option value="integral">
+                        This dish is NOT pescatarian
+                      </option>
+                      <option value="removable">
+                        Dish can be made pescatarian
+                      </option>
                     </Select>
                   </FormControl>
                   <Text fontWeight="bold">
