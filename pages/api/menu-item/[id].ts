@@ -41,7 +41,9 @@ const handler = nc()
         mustard: req.body.mustard,
         celery: req.body.celery,
         fish: req.body.fish,
-        diet: req.body.diet,
+        vegan: req.body.vegan,
+        veg: req.body.veg,
+        pescatarian: req.body.pescatarian,
       },
     });
 

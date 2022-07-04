@@ -23,6 +23,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
   const router = useRouter();
   const [name, setName] = useState(item.name);
   const [course, setCourse] = useState(item.course);
+  const [price, setPrice] = useState(item.price);
   const [description, setDescription] = useState(item.description);
   const [gluten, setGluten] = useState(item.gluten);
   const [dairy, setDairy] = useState(item.dairy);
@@ -38,10 +39,24 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
   const [mustard, setMustard] = useState(item.mustard);
   const [celery, setCelery] = useState(item.celery);
   const [fish, setFish] = useState(item.fish);
-  const [diet, setDiet] = useState(item.diet);
+  const [vegan, setVegan] = useState(item.vegan);
+  const [veg, setVeg] = useState(item.veg);
+  const [pescatarian, setPescatarian] = useState(item.pescatarian);
 
-  const handleDiet = (e: { target: { value: SetStateAction<string> } }) => {
-    setDiet(e.target.value);
+  console.log(vegan, veg, pescatarian)
+
+  const handleVegan = (e: { target: { value: SetStateAction<string> } }) => {
+    setVegan(e.target.value);
+  };
+
+  const handleVeg = (e: { target: { value: SetStateAction<string> } }) => {
+    setVeg(e.target.value);
+  };
+
+  const handlePescatarian = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setPescatarian(e.target.value);
   };
 
   const handleCourse = (e: { target: { value: SetStateAction<string> } }) => {
@@ -66,7 +81,9 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     mustard: string;
     celery: string;
     fish: string;
-    diet: string;
+    vegan: string;
+    veg: string;
+    pescatarian: string;
   }) => {
     // AXIOS REQUESTS MUST TO BE httpsS ON DEPLOYMENT TO PREVENT
     // (blocked:mixed-content)
@@ -84,6 +101,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     const updatedMenu = {
       name,
       course,
+      price,
       description,
       gluten,
       dairy,
@@ -99,7 +117,9 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
       mustard,
       celery,
       fish,
-      diet,
+      vegan,
+      veg,
+      pescatarian,
     };
     try {
       await updateData(updatedMenu);
@@ -114,7 +134,7 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
     router.push(`/dashboard/menus/menu/${item.menu.id}`);
   };
 
-  console.log(course);
+  console.log(gluten);
 
   return (
     <SidebarWithHeader user={user}>
@@ -149,21 +169,15 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
                       </FormControl>
                     </Box>
                     <Box>
-                      <FormControl isRequired>
-                        <FormLabel fontWeight="bold" htmlFor="course">
-                          Course
+                      <FormControl id="name" isRequired>
+                        <FormLabel fontWeight="bold">
+                          Price (e.g: 17.50)
                         </FormLabel>
-                        <Select
-                          onChange={handleCourse}
-                          value={course}
-                          id="course"
-                          placeholder="Select course"
-                        >
-                          <option value="Starters">Starters</option>
-                          <option value="Mains">Main</option>
-                          <option value="Sides">Sides</option>
-                          <option value="Dessert">Dessert</option>
-                        </Select>
+                        <Input
+                          type="text"
+                          value={price}
+                          onChange={(e) => setPrice(e.target.value)}
+                        />
                       </FormControl>
                     </Box>
                   </HStack>
@@ -178,19 +192,76 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
                     />
                   </FormControl>
                   <FormControl isRequired>
-                    <FormLabel fontWeight="bold" htmlFor="diet">
-                      Is this dish vegan, vegetarian or pescatarian?
+                    <FormLabel fontWeight="bold" htmlFor="course">
+                      Course
                     </FormLabel>
                     <Select
-                      onChange={handleDiet}
-                      value={diet}
-                      id="diet"
-                      placeholder="Select diet"
+                      onChange={handleCourse}
+                      value={course}
+                      id="course"
+                      placeholder="Select course"
                     >
-                      <option value="noDiet">No</option>
-                      <option value="vegan">Vegan</option>
-                      <option value="vegetarian">Vegetarian</option>
-                      <option value="pescatarian">Pescatarian</option>
+                      <option value="Starters">Starters</option>
+                      <option value="Mains">Main</option>
+                      <option value="Sides">Sides</option>
+                      <option value="Dessert">Dessert</option>
+                    </Select>
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="bold" htmlFor="diet">
+                      What are the vegan options for this dish?
+                    </FormLabel>
+                    <Select
+                      onChange={handleVegan}
+                      value={vegan}
+                      id="diet"
+                      placeholder="Select vegan option"
+                    >
+                      <option value="notIncluded">This dish is vegan</option>
+                      <option value="integral">This dish is NOT vegan</option>
+                      <option value="removable">Dish can be made vegan</option>
+                    </Select>
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="bold" htmlFor="diet">
+                      What are the vegetarian options for this dish?
+                    </FormLabel>
+                    <Select
+                      onChange={handleVeg}
+                      value={veg}
+                      id="diet"
+                      placeholder="Select vegetarian option"
+                    >
+                      <option value="notIncluded">
+                        This dish is vegetarian
+                      </option>
+                      <option value="integral">
+                        This dish is NOT vegetarian
+                      </option>
+                      <option value="removable">
+                        Dish can be made vegetarian
+                      </option>
+                    </Select>
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="bold" htmlFor="diet">
+                      What are the pescatarian options for this dish?
+                    </FormLabel>
+                    <Select
+                      onChange={handlePescatarian}
+                      value={pescatarian}
+                      id="diet"
+                      placeholder="Select pescatarian option"
+                    >
+                      <option value="notIncluded">
+                        This dish is pescatarian
+                      </option>
+                      <option value="integral">
+                        This dish is NOT pescatarian
+                      </option>
+                      <option value="removable">
+                        Dish can be made pescatarian
+                      </option>
                     </Select>
                   </FormControl>
                   <Text fontWeight="bold">
@@ -246,9 +317,15 @@ const MenuItem: NextPage = ({ menuItem, host }) => {
                       value={peanuts}
                     >
                       <HStack spacing="1.5rem">
-                        <Radio value="integral">Integral</Radio>
-                        <Radio value="removable">Removable</Radio>
-                        <Radio value="notIncluded">Not Included</Radio>
+                        <Radio name="peanuts" value="integral">
+                          Integral
+                        </Radio>
+                        <Radio name="peanuts" value="removable">
+                          Removable
+                        </Radio>
+                        <Radio name="peanuts" value="notIncluded">
+                          Not Included
+                        </Radio>
                       </HStack>
                     </RadioGroup>
                   </FormControl>

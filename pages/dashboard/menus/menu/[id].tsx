@@ -60,7 +60,7 @@ const Menu: NextPage = ({ menuItems, menu, id }) => {
             </Heading>
           </Box>
           <LinkBox>
-            <Link href={`/dashboard/menus/menu/add/${menuItems[0].id}`}>
+            <Link href={`/dashboard/menus/menu/add/${menuDetails.id}`}>
               <LinkOverlay>+ Add Dish</LinkOverlay>
             </Link>
           </LinkBox>

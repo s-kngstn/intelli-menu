@@ -6,13 +6,50 @@ import {
   Input,
   InputGroup,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { useUser } from "../../../lib/hooks";
 import SidebarWithHeader from "../../../src/components/nav-sidebar/sidebarWithNav";
 
-const AddRestaurant: NextPage = () => {
+const AddRestaurant: NextPage = ({ host }) => {
   const { user } = useUser();
-  console.log(user)
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+
+  const createRestaurant = async (restaurant: {
+    name: string;
+    address: string;
+    userId: any;
+  }) => {
+    const { data } = await axios.post(
+      `http://${host}/api/restaurant/add`,
+      restaurant
+    );
+
+    return data;
+  };
+
+  const userID = user.id;
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const create = {
+      name,
+      address,
+      id: userID,
+    };
+    try {
+      await createRestaurant(create);
+      router.push(`/dashboard`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(user);
   return (
     <SidebarWithHeader user={user}>
       <Flex minH="95vh" align="center" justify="center" bg="gray.100">
@@ -28,13 +65,14 @@ const AddRestaurant: NextPage = () => {
             </Heading>
           </Stack>
           <Box rounded="lg" bg="white" boxShadow="lg" p={8}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <Stack spacing={4}>
                 <FormControl id="name" isRequired>
                   <FormLabel>Name</FormLabel>
                   <Input
                     type="text"
-                    // onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
                   />
                 </FormControl>
                 <FormControl id="address" isRequired>
@@ -42,13 +80,13 @@ const AddRestaurant: NextPage = () => {
                   <InputGroup>
                     <Input
                       type="text"
-                      // onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setAddress(e.target.value)}
+                      value={address}
                     />
                   </InputGroup>
                 </FormControl>
                 <Stack spacing={10} pt={2}>
                   <Button
-                    // isLoading={isLoading}
                     bg="#065666"
                     color="white"
                     _hover={{
@@ -68,6 +106,15 @@ const AddRestaurant: NextPage = () => {
       </Flex>
     </SidebarWithHeader>
   );
+};
+
+export const getServerSideProps = async (context: {
+  req: { headers: { host: any } };
+}) => {
+  const { host } = context.req.headers;
+  return {
+    props: { host },
+  };
 };
 
 export default AddRestaurant;
