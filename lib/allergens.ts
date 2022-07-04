@@ -20,7 +20,7 @@ export const allergens: {
   },
   {
     name: "sesame",
-    key: "Sesame Seeds",
+    key: "Sesame",
   },
   {
     name: "soya",
@@ -28,7 +28,7 @@ export const allergens: {
   },
   {
     name: "sulphites",
-    key: "Sulphur Dioxide",
+    key: "Sulphites",
   },
   {
     name: "eggs",

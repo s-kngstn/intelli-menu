@@ -39,9 +39,7 @@ export const allergyFilter = (
   }
   const removables: Menu[] = [];
   const allergyFreeMenu: Menu[] = [];
-  console.log(menu[0].integral);
   menu.forEach((eachDish) => {
-    console.log(eachDish);
     const containsAllergen = eachDish.integral.some((ingredient) =>
       usersDiet.includes(ingredient)
     );
