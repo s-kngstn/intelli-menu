@@ -25,7 +25,7 @@ const AddRestaurant: NextPage = ({ host }) => {
     userId: any;
   }) => {
     const { data } = await axios.post(
-      `http://${host}/api/restaurant/add`,
+      `https://${host}/api/restaurant/add`,
       restaurant
     );
 
