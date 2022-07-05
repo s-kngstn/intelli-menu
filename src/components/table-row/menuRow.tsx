@@ -9,7 +9,13 @@ const TableRow = ({ data, tableId }) => {
   return (
     <Tr>
       <Td>{tableId}</Td>
-      <Td fontWeight="bold">{name}</Td>
+      <Td fontWeight="bold">
+        <LinkBox>
+          <Link href={`/your-menu/${id}`}>
+            <LinkOverlay>{name}</LinkOverlay>
+          </Link>
+        </LinkBox>
+      </Td>
       <Td>{timeSince(new Date(createdAt))}</Td>
       <Td>
         <LinkBox>

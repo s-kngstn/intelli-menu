@@ -25,9 +25,10 @@ const CallToActionWithAnnotation = () => {
           what you dont need
         </Heading>
         <Text color="Gray.500">
-          Tincidunt ornare massa eget egestas purus viverra accumsan in nisl
-          nisi scelerisque eu ultrices vitae auctor eu augue ut lectus arcu
-          bibendum at varius vel pharetra vel turpis
+          Introducing a cutting edge filtering system that abstracts menu items
+          away from your restaurant guests based on dietary preferences and
+          allergies. Giving diners the confidence to browse your menus knowing
+          everything they see is a dish they can enjoy.
         </Text>
         <Stack
           direction="column"
@@ -49,7 +50,7 @@ const CallToActionWithAnnotation = () => {
           >
             Get Started
           </Link>
-          <Link href="/signup" variant="link" color="#065666" size="sm">
+          <Link href="/about" variant="link" color="#065666" size="sm">
             Learn more
           </Link>
         </Stack>

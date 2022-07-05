@@ -19,6 +19,7 @@ import MenuItemRow from "../../../../src/components/table-row/menuItemRow";
 const Menu: NextPage = ({ menuItems, menu, id }) => {
   const { user } = useUser();
   const menuDetails = menu[0];
+  console.log(menu[0].id)
 
   return menuItems.length === 0 ? (
     <SidebarWithHeader user={user}>
@@ -82,6 +83,7 @@ const Menu: NextPage = ({ menuItems, menu, id }) => {
                       key={menuItem.itemId}
                       tableId={i + 1}
                       data={menuItem}
+                      prevPage={menuDetails.id}
                     />
                   );
                 }
