@@ -25,6 +25,7 @@ interface NavItem {
   subLabel?: string;
   children?: Array<NavItem>;
   href?: string;
+  target?: string;
 }
 
 const NAV_ITEMS: Array<NavItem> = [
@@ -51,12 +52,13 @@ const NAV_ITEMS: Array<NavItem> = [
         subLabel:
           "A comprehensive list of the 14 ingredients most likely to cause incidents in your restaurant",
         href: "https://www.food.gov.uk/sites/default/files/media/document/top-allergy-types.pdf",
+        target: "_blank",
       },
     ],
   },
 ];
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel, target }: NavItem) => {
   return (
     <Link
       href={href}
@@ -65,6 +67,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       p={2}
       rounded="md"
       _hover={{ bg: "#defbff" }}
+      target={target}
     >
       <Stack direction="row" align="center">
         <Box>
@@ -114,7 +117,6 @@ const DesktopNav = () => {
                   textDecoration: "none",
                   color: linkHoverColor,
                 }}
-                target="_blank"
               >
                 {navItem.label}
               </Link>

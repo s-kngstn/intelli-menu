@@ -6,16 +6,7 @@ import {
   Heading,
   Text,
   Stack,
-  StackDivider,
-  Icon,
-  useColorModeValue,
 } from "@chakra-ui/react";
-import {
-  IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
-} from "react-icons/io5";
-import { ReactElement } from "react";
 import Image from "next/image";
 import { NextPage } from "next";
 import womanMenu from "../public/images/woman-lookingat-menu.jpeg";
