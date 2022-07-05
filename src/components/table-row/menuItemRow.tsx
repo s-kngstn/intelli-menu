@@ -1,11 +1,26 @@
+import axios from "axios";
+import { useRouter } from "next/router";
 import { Icon, Link, LinkBox, LinkOverlay, Td, Tr } from "@chakra-ui/react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 import { timeSince } from "../../../lib/timeSince";
 
-const MenuItemRow = ({ data, tableId }) => {
-  const { name, createdAt, itemId } = data;
-  console.log(data)
+const MenuItemRow = ({ data, tableId, prevPage }) => {
+  const { name, createdAt, itemId, id } = data;
+  const router = useRouter();
+
+  const deleteItem = async (dishId: any) => {
+    const response = await axios.delete(
+      `http://localhost:3000/api/menu-item/delete/${dishId}`
+    );
+
+    return response.data;
+  };
+
+  const handleDelete = async () => {
+    await deleteItem(id);
+    router.push(`/dashboard/menus/menu/${prevPage}`);
+  };
   return (
     <Tr>
       <Td>{tableId}</Td>
@@ -21,7 +36,14 @@ const MenuItemRow = ({ data, tableId }) => {
         </LinkBox>
       </Td>
       <Td>
-        <Icon as={RiDeleteBin6Line} w={6} h={6} color="#065666" />
+        <Icon
+          onClick={handleDelete}
+          cursor="pointer"
+          as={RiDeleteBin6Line}
+          w={6}
+          h={6}
+          color="#065666"
+        />
       </Td>
     </Tr>
   );
