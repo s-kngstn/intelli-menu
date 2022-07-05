@@ -37,12 +37,12 @@ const About: NextPage = () => {
               your guests to see the menu as they want it{" "}
             </Heading>
             <Text color="gray.500" fontSize="lg">
-              Many restaurants have yet to provide allergen and dietary
+              Often restaurants have yet to provide allergen and dietary
               information on their menus, and when they do often the menu
-              becomes hard to read, ugly and over crowded with extra information
-              that can lead to information fatigue. Menu’s that are easy to read
-              should display the name of the dish, a small description and the
-              price only.
+              becomes hard to read and over crowded with extra content that can
+              lead to information fatigue. We provide menu’s that are easy to
+              read. Displaying only the name of the dish, a small description,
+              and the price.
             </Text>
           </Stack>
           <Flex>
@@ -75,12 +75,12 @@ const About: NextPage = () => {
               your guests feel safe and satisfied{" "}
             </Heading>
             <Text color="gray.500" fontSize="lg">
-              Sometimes clients avoid going out to eat due to being embarrassed
-              about sharing their allergies, or just tired of having to repeat
-              the same long process of: Informing the waiter of their allergies,
-              Having the waiter go to the chef and explain the situation, Then
-              returning to the table and hopefully conveying the correct
-              information.
+              Sometimes your guests avoid going out to eat due to being
+              embarrassed about sharing their allergies, or just tired of having
+              to repeat the same long process of: <br />
+              Informing you of their allergies, Having your staff go to the chef
+              and explain the situation, Then returning to the table and
+              hopefully conveying the correct information.
             </Text>
             <Text color="gray.500" fontSize="lg">
               During weekends and peak hours of operation, these extra steps are
@@ -108,11 +108,12 @@ const About: NextPage = () => {
               and unforgettable dining experience{" "}
             </Heading>
             <Text color="gray.500" fontSize="lg">
-              There are times someone might be going on a date, or having an
-              important business meeting and would rather not have to explain in
-              public that they do not like onions, or cannot eat fish, or they
-              have a peanut allergy.. Intellimenu provides a safe space for
-              clients to explore the menu catered exclusively to their needs.
+              There are often times your guests might be going on a date, or
+              having an important business meeting. Most of these guests would
+              rather not have to explain in public that they do not like onions,
+              or cannot eat fish, or they have a peanut allergy.. Intellimenu
+              provides a safe space for your regulars and new guests alike to
+              explore a menu catered exclusively to their needs.
             </Text>
           </Stack>
           <Flex>
