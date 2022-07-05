@@ -23,34 +23,10 @@ import womenEating from "../public/images/three-eating.jpeg";
 import groupEating from "../public/images/group-eating.jpeg";
 import WithSubnavigation from "../src/components/nav-homepage/HomeNavigation";
 
-interface FeatureProps {
-  text: string;
-  iconBg: string;
-  icon?: ReactElement;
-}
-
-const Feature = ({ text, icon, iconBg }: FeatureProps) => {
-  return (
-    <Stack direction="row" align="center">
-      <Flex
-        w={8}
-        h={8}
-        align="center"
-        justify="center"
-        rounded="full"
-        bg={iconBg}
-      >
-        {icon}
-      </Flex>
-      <Text fontWeight={600}>{text}</Text>
-    </Stack>
-  );
-};
-
 const About: NextPage = () => {
   return (
     <>
-      <Container position="fixed" zIndex="99999" maxW="8xl">
+      <Container position="fixed" zIndex="99999" width="-webkit-fill-available">
         <WithSubnavigation />
       </Container>
       <Container maxW="7xl" paddingTop="13rem">

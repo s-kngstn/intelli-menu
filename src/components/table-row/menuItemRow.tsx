@@ -5,13 +5,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 import { timeSince } from "../../../lib/timeSince";
 
-const MenuItemRow = ({ data, tableId, prevPage }) => {
+const MenuItemRow = ({ data, tableId, prevPage, url }) => {
   const { name, createdAt, itemId, id } = data;
   const router = useRouter();
 
   const deleteItem = async (dishId: any) => {
     const response = await axios.delete(
-      `https://localhost:3000/api/menu-item/delete/${dishId}`
+      `https://${url}/api/menu-item/delete/${dishId}`
     );
 
     return response.data;

@@ -16,10 +16,10 @@ import { prisma } from "../../../../lib/prisma";
 import SidebarWithHeader from "../../../../src/components/nav-sidebar/sidebarWithNav";
 import MenuItemRow from "../../../../src/components/table-row/menuItemRow";
 
-const Menu: NextPage = ({ menuItems, menu, id }) => {
+const Menu: NextPage = ({ menuItems, menu, id, host }) => {
   const { user } = useUser();
   const menuDetails = menu[0];
-  console.log(menu[0].id)
+  console.log(menu[0].id);
 
   return menuItems.length === 0 ? (
     <SidebarWithHeader user={user}>
@@ -84,6 +84,7 @@ const Menu: NextPage = ({ menuItems, menu, id }) => {
                       tableId={i + 1}
                       data={menuItem}
                       prevPage={menuDetails.id}
+                      url={host}
                     />
                   );
                 }
@@ -96,8 +97,12 @@ const Menu: NextPage = ({ menuItems, menu, id }) => {
   );
 };
 
-export const getServerSideProps = async (context: { query: { id: any } }) => {
+export const getServerSideProps = async (context: {
+  req: any;
+  query: { id: any };
+}) => {
   const { id } = context.query;
+  const { host } = context.req.headers;
   const token = context.req.cookies.INTELLI_ACCESS_TOKEN;
 
   if (!token) {
@@ -138,7 +143,7 @@ export const getServerSideProps = async (context: { query: { id: any } }) => {
   });
 
   return {
-    props: { menuItems, menu },
+    props: { menuItems, menu, host },
   };
 };
 
