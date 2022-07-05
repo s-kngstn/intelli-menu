@@ -26,9 +26,7 @@ import WithSubnavigation from "../src/components/nav-homepage/HomeNavigation";
 const About: NextPage = () => {
   return (
     <>
-      <Container>
-        <WithSubnavigation />
-      </Container>
+      <WithSubnavigation />
       <Container maxW="7xl" paddingTop="13rem">
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <Stack spacing={4}>
