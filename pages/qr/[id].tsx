@@ -15,7 +15,7 @@ const QrPage = ({ id, host }) => {
           direction="column"
         >
           <Heading color="blackAlpha.900" paddingBottom="1rem">
-            Here is your QR Code for Menu Name Here via Props
+            Here is your menus QR Code
           </Heading>
           <Text>
             Please right-click to save your QR image, and then add it to your
