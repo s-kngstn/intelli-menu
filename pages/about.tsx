@@ -26,7 +26,7 @@ import WithSubnavigation from "../src/components/nav-homepage/HomeNavigation";
 const About: NextPage = () => {
   return (
     <>
-      <Container position="fixed" zIndex="99999" width="-webkit-fill-available">
+      <Container>
         <WithSubnavigation />
       </Container>
       <Container maxW="7xl" paddingTop="13rem">
