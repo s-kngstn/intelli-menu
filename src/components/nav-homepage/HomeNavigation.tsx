@@ -114,6 +114,7 @@ const DesktopNav = () => {
                   textDecoration: "none",
                   color: linkHoverColor,
                 }}
+                target="_blank"
               >
                 {navItem.label}
               </Link>
@@ -234,16 +235,22 @@ const HomeNavigation = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily="heading"
-            // color={useColorModeValue("gray.800", "white")}
-            bgGradient="linear(to-l, #76E4F7, #065666)"
-            bgClip="text"
-            fontWeight="bold"
-          >
-            Intellimenu.
-          </Text>
+          <LinkBox>
+            <Link href="/">
+              <LinkOverlay>
+                <Text
+                  textAlign={useBreakpointValue({ base: "center", md: "left" })}
+                  fontFamily="heading"
+                  // color={useColorModeValue("gray.800", "white")}
+                  bgGradient="linear(to-l, #76E4F7, #065666)"
+                  bgClip="text"
+                  fontWeight="bold"
+                >
+                  Intellimenu.
+                </Text>
+              </LinkOverlay>
+            </Link>
+          </LinkBox>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
