@@ -38,7 +38,9 @@ const RestaurantCard = ({ restaurant }) => {
           >
             {restaurant.name}
           </Heading>
-          <Text color="gray.500">{restaurant.address}</Text>
+          <Text textAlign="center" color="gray.500">
+            {restaurant.address}
+          </Text>
         </Stack>
         <LinkBox>
           <Link href={`/dashboard/menus/${restaurant.id}`}>
