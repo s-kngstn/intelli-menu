@@ -11,7 +11,7 @@ const MenuItemRow = ({ data, tableId, prevPage }) => {
 
   const deleteItem = async (dishId: any) => {
     const response = await axios.delete(
-      `http://localhost:3000/api/menu-item/delete/${dishId}`
+      `https://localhost:3000/api/menu-item/delete/${dishId}`
     );
 
     return response.data;
