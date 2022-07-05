@@ -6,6 +6,7 @@ import {
   Heading,
   Text,
   Stack,
+  Box,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { NextPage } from "next";
@@ -45,14 +46,18 @@ const About: NextPage = () => {
             </Text>
           </Stack>
           <Flex>
-            <Image alt="feature image" src={womanMenu} objectFit="cover" />
+            <Box color="#76E4F7" borderStyle="solid" border="8px" p="1rem">
+              <Image alt="feature image" src={womanMenu} objectFit="cover" />
+            </Box>
           </Flex>
         </SimpleGrid>
       </Container>
       <Container maxW="7xl" paddingTop="13rem">
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <Flex>
-            <Image alt="feature image" src={womenEating} objectFit="cover" />
+            <Box color="#76E4F7" borderStyle="solid" border="8px" p="1rem">
+              <Image alt="feature image" src={womenEating} objectFit="cover" />
+            </Box>
           </Flex>
           <Stack textAlign="right" spacing={4}>
             <Heading
@@ -111,7 +116,9 @@ const About: NextPage = () => {
             </Text>
           </Stack>
           <Flex>
-            <Image alt="feature image" src={groupEating} objectFit="cover" />
+            <Box color="#76E4F7" borderStyle="solid" border="8px" p="1rem">
+              <Image alt="feature image" src={groupEating} objectFit="cover" />
+            </Box>
           </Flex>
         </SimpleGrid>
       </Container>
