@@ -10,10 +10,9 @@ import {
 const Menu = ({ children, starters, mains, sides, dessert }) => {
   return (
     <Box>
-      <Container py="1rem" maxW="container.sm" bg="whiteAlpha.900">
+      <Container py="1rem" maxW="container.sm" bg="gray.200" marginBottom="4px">
         {children}
       </Container>
-      <Box borderBottom="4px" borderColor="#065666" borderStyle="solid" />
       <Container maxW="container.sm" padding="1rem" bg="gray.200">
         <LinkBox>
           <Link href="/">

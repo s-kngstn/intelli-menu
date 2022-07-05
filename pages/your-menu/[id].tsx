@@ -67,7 +67,7 @@ const YourMenu: NextPage = ({ yourMenuItems }) => {
   });
 
   return (
-    <Box height="-webkit-fit-content" backgroundColor="#065666">
+    <Box height="-webkit-fit-content" backgroundColor="#fff">
       <Menu
         starters={menuItems[0]}
         mains={menuItems[1]}
