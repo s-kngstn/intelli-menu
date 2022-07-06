@@ -105,13 +105,13 @@ const About: NextPage = () => {
               >
                 Provide
               </Text>{" "}
-              and unforgettable dining experience{" "}
+              an unforgettable dining experience{" "}
             </Heading>
             <Text color="gray.500" fontSize="lg">
               There are often times your guests might be going on a date, or
               having an important business meeting. Most of these guests would
               rather not have to explain in public that they do not like onions,
-              or cannot eat fish, or they have a peanut allergy.. Intellimenu
+              cannot eat fish, or they have a peanut allergy. Intellimenu
               provides a safe space for your regulars and new guests alike to
               explore a menu catered exclusively to their needs.
             </Text>
