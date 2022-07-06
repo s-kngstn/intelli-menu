@@ -7,7 +7,7 @@ import {
   LinkOverlay,
 } from "@chakra-ui/layout";
 
-const Menu = ({ children, starters, mains, sides, dessert }) => {
+const Menu = ({ children, starters, mains, sides, dessert, name }) => {
   return (
     <Box>
       <Container py="1rem" maxW="container.sm" bg="gray.200" marginBottom="4px">
@@ -15,10 +15,17 @@ const Menu = ({ children, starters, mains, sides, dessert }) => {
       </Container>
       <Container maxW="container.sm" padding="1rem" bg="gray.200">
         <LinkBox>
+          <Heading as="h1" textAlign="center" color="blackAlpha.800">
+            {name}
+          </Heading>
           <Link href="/">
             <LinkOverlay>
+              <Heading as="h3" fontSize="large" textAlign="center" color="blackAlpha.800">
+                Powered by
+              </Heading>
               <Heading
-                as="h1"
+                as="h3"
+                fontSize="large"
                 textAlign="center"
                 bgGradient="linear(to-l, #76E4F7, #065666)"
                 bgClip="text"

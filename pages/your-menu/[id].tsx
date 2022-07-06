@@ -25,7 +25,6 @@ const YourMenu: NextPage = ({ yourMenuItems }) => {
       [event.target.name]: event.target.checked,
     });
   };
-  console.log(yourMenuItems)
   const [optionValue, setOptionValue] = useState("");
   const handleSelect = (e) => {
     setOptionValue(e.target.value);
@@ -33,7 +32,8 @@ const YourMenu: NextPage = ({ yourMenuItems }) => {
   function getObjKey(obj, value) {
     return Object.keys(obj).filter((key) => obj[key] === value);
   }
-
+  
+  const menuName = yourMenuItems[0].menu.name;
   const menuItemsList = yourMenuItems.map((item, i) => {
     return {
       id: item.itemId,
@@ -73,6 +73,7 @@ const YourMenu: NextPage = ({ yourMenuItems }) => {
         mains={menuItems[1]}
         sides={menuItems[2]}
         dessert={menuItems[3]}
+        name={menuName}
       >
         <Flex
           flexDirection="column"
